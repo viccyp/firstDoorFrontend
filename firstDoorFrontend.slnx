@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="firstDoorFrontend.Client/firstDoorFrontend.Client.csproj" />
+  <Project Path="firstDoorFrontend/firstDoorFrontend.csproj" />
+</Solution>
