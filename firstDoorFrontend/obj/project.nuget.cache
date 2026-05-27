@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IaKdGCAFCes=",
+  "dgSpecHash": "AeTCn1Surag=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nicko\\Desktop\\project\\frontEnd\\firstDoorFrontend\\firstDoorFrontend\\firstDoorFrontend.csproj",
+  "projectFilePath": "C:\\Users\\nicko\\Desktop\\project\\frontEnd\\firstDoorFrontend\\firstDoorFrontEnd\\firstDoorFrontend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.27\\microsoft.aspnetcore.authorization.8.0.27.nupkg.sha512",
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.aspnetcore.components\\8.0.27\\microsoft.aspnetcore.components.8.0.27.nupkg.sha512",
@@ -29,8 +29,8 @@
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.jsinterop\\8.0.27\\microsoft.jsinterop.8.0.27.nupkg.sha512",
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.jsinterop.webassembly\\8.0.27\\microsoft.jsinterop.webassembly.8.0.27.nupkg.sha512",
     "C:\\Users\\nicko\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
-    "C:\\Users\\nicko\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.27\\microsoft.netcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\nicko\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.27\\microsoft.aspnetcore.app.ref.8.0.27.nupkg.sha512",
     "C:\\Users\\nicko\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.27\\microsoft.netcore.app.host.win-x64.8.0.27.nupkg.sha512"
   ],

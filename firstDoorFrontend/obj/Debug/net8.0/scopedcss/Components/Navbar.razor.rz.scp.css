@@ -1,0 +1,27 @@
+.top-navbar[b-9iqjwdzcmm] {
+    border: 5px solid black;
+    height: 75px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 12px;
+    margin: 20px;
+    background: white;
+}
+
+.nav-links[b-9iqjwdzcmm] {
+    display: flex;
+}
+
+.nav-button[b-9iqjwdzcmm] {
+    width: 115px;
+    height: 40px;
+    border: 1px solid #222;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .nav-button:hover[b-9iqjwdzcmm] {
+        background: aquamarine;
+    }
