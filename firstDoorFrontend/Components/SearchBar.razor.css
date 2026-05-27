@@ -2,7 +2,7 @@
     display: flex;
     justify-content: right;
     align-items: center;
-    margin: 30px 20px;
+    margin: 60px 20px;
 }
 
 .search-input {
@@ -26,5 +26,5 @@
 }
 
     .search-button:hover {
-        background: lawngreen;
+        background: springgreen;
     }
