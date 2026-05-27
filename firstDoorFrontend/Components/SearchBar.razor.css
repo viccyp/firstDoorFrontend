@@ -1,0 +1,30 @@
+﻿.search-bar-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 60px 20px;
+}
+
+.search-input {
+    width: 420px;
+    height: 42px;
+    border: 2px solid #222;
+    padding: 0 12px;
+    font-size: 16px;
+}
+
+.search-button {
+    margin-left: 30px;
+    margin-right: 60px;
+    height: 46px;
+    width: 100px;
+    border: 2px solid #222;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    background: aquamarine;
+}
+
+    .search-button:hover {
+        background: springgreen;
+    }
