@@ -1,5 +1,5 @@
 ﻿.top-navbar {
-    border: 5px solid black;
+    border: 2px solid black;
     height: 75px;
     display: flex;
     justify-content: flex-end;
@@ -24,4 +24,8 @@
 
     .nav-button:hover {
         background: aquamarine;
+    }
+
+    .button-div{
+        padding: 10px;
     }
