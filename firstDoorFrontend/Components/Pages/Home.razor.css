@@ -6,3 +6,13 @@
     margin-top: -40px;
 
 }
+
+
+.page-layout {
+    display: flex;
+    align-items: flex-start;
+}
+
+.content-section {
+    flex: 1;
+}
