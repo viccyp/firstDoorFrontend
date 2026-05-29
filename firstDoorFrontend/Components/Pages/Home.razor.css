@@ -18,3 +18,11 @@
 .content-section {
     flex: 1;
 }
+
+.sortBy-div {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 115px;
+    margin-bottom: 40px;
+    margin-top: -40px;
+}
