@@ -1,0 +1,41 @@
+﻿.filters-container {
+    width: 260px;
+    min-height: 300px;
+    border: 2px solid #222;
+    padding: 35px 28px;
+    margin-left: 20px;
+    margin-top: 40px;
+    background: white;
+    background-color: rgba(4, 170, 109, 0.3);
+}
+
+.filters-container h3 {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-options label {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 16px;
+}
+
+.filter-options input {
+    width: 14px;
+    height: 14px;
+}
+
+.search-button{
+    margin-top: 90px;
+}
+
+.search-button:hover {
+    background: springgreen;
+}
