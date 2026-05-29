@@ -7,11 +7,11 @@
     <div class="job-card">
         <div>
             <h3>@Job.Title</h3>
-            <p>@Job.EmployerName</p>
-            <p>@Job.Location</p>
+            <p>Company: @Job.EmployerName</p>
+            <p>Location: @Job.Location</p>
         </div>
 
-        <button @onclick="() => HandleClick(Job)" Text="View Job" />
+        <button @onclick="() => HandleClick(Job)">View Details</button>
     </div>
 }
 
