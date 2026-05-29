@@ -1,24 +1,27 @@
 ﻿@using Models
 @rendermode InteractiveServer
 
-<JobCard OnViewJob="OnViewJob"></JobCard>
+<JobCard OnViewJob="OnViewJob" Job="CurrentJob"></JobCard>
 
-@* <div class="job-overview">
-    <h2>Job Overview</h2>
+@if (CurrentJob != null)
+{
+    <div class="job-overview">
+        <h2>Job Overview</h2>
 
-    <div class="job-header">
-        <h3>@CurrentJob.Title</h3>
+        <div class="job-header">
+            <h3>@CurrentJob.Title</h3>
 
-        <ButtonComp Text="Quick Apply" />
+            <ButtonComp Text="Quick Apply" />
+        </div>
+        <p>
+            @CurrentJob.Description
+        </p>
+
+        <h6>@CurrentJob.EmployerName</h6>
+        <p><strong>@CurrentJob.Location</strong> </p>
+        <p><strong>@CurrentJob.Url</strong> </p>
     </div>
-    <p>
-        @CurrentJob.Description
-    </p>
-
-    <h6>@CurrentJob.EmployerName</h6>
-    <p><strong>@CurrentJob.Location</strong> </p>
-    <p><strong>@CurrentJob.Url</strong> </p>
-</div> *@
+}
 
 @code {
     [Parameter]
