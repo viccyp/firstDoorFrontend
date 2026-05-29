@@ -1,2 +1,14 @@
-﻿body {
+﻿.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
+.sort-select {
+    padding: 8px;
+    border: none;
+    outline: none;
+    background: white;
+}
+
+
