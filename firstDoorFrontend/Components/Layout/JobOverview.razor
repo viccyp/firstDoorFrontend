@@ -1,11 +1,10 @@
 ﻿@using Models
 @rendermode InteractiveServer
 
-<JobCard OnViewJob="OnViewJob" Job="CurrentJob"></JobCard>
-
 @if (CurrentJob != null)
 {
     <div class="job-overview">
+        <JobCard Job="CurrentJob"></JobCard>
         <h2>Job Overview</h2>
 
         <div class="job-header">
