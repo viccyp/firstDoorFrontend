@@ -12,7 +12,7 @@
             <a href="@CurrentJob.Url" target="blank" class="btn btn-primary">Quick apply</a>
         </div>
         <p>
-            @CurrentJob.Description
+            @((MarkupString)CurrentJob.Description)
         </p>
 
         <h6>@CurrentJob.EmployerName</h6>
