@@ -1,0 +1,21 @@
+﻿@using Models
+@using Microsoft.AspNetCore.Components
+
+
+<div class="job-card">
+    <div>
+        <h3>@Job.Title</h3>
+        <p>@Job.EmployerName</p>
+        <p>@Job.Location</p>
+    </div>
+
+    <ButtonComp Text="View Job" />
+</div>
+
+
+@code {
+
+    [Parameter]
+    public Job Job { get; set; } = default!;
+
+}
