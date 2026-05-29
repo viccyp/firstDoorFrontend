@@ -1,4 +1,5 @@
 ﻿@using firstDoorFrontend.Components.Layout
+@rendermode InteractiveServer
 @page "/"
 
 <NavBar />
@@ -16,11 +17,7 @@
             <SortBy />
         </div>
         
+        <JobLoader />
 
-        <div class="job-list-container">
-            <JobCard />
-            <JobCard />
-            <JobCard />
-        </div>
     </div>
 </div>

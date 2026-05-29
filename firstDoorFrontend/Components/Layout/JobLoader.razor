@@ -1,0 +1,53 @@
+﻿@using Models
+@inject HttpClient Http
+@rendermode InteractiveServer
+
+@if (isError)
+{
+    <p>Error loading jobs. Please try again later.</p>
+}
+else if (jobs == null)
+{
+    <p>Loading jobs...</p>
+}
+else if (jobs.Count == 0)
+{
+    <p>No jobs found.</p>
+}
+else
+{
+    <div class="job-list-container">
+        @foreach (var job in jobs)
+        {
+            <JobCard Job="job" />
+        }
+    </div>
+}
+
+
+
+@code {
+    private List<Job>? jobs = new();
+
+    private bool isError = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        isError = false;
+        try
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7052/CareerJet");
+            request.Headers.Add("User-Agent", "Mozilla");
+            var response = await Http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            jobs = await response.Content.ReadFromJsonAsync<List<Job>>();
+        }
+        catch (Exception ex)
+        {
+            isError = true;
+            Console.WriteLine($"Error fetching jobs: {ex.Message}");
+        }
+    }
+
+}
