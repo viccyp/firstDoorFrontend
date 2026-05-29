@@ -1,7 +1,15 @@
 ﻿@using Models
 @rendermode InteractiveServer
 
-@if (CurrentJob != null)
+@if (CurrentJob == null)
+{
+    <div class="job-overview">
+        <h2>Job Overview</h2>
+
+        <div class="job-header">Click on a job to see more details here!</div>
+    </div>
+}
+else
 {
     <div class="job-overview">
         <h2>Job Overview</h2>
