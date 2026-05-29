@@ -10,13 +10,19 @@
         <p>@Job.Location</p>
     </div>
 
-    <ButtonComp Text="View Job" />
+    <button @onclick="() => HandleClick(Job)" Text="View Job" />
 </div>
 
 
 @code {
-
     [Parameter]
     public Job Job { get; set; } = new Job("Software Engineer","Dell","London","Decription stuff","a URL");
 
+    [Parameter]
+    public EventCallback<Job> OnViewJob { get; set; }
+
+    private async Task HandleClick(Job job)
+    {
+        await OnViewJob.InvokeAsync(job);
+    }
 }

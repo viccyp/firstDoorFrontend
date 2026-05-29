@@ -1,27 +1,31 @@
-﻿<div class="job-overview">
+﻿@using Models
+@rendermode InteractiveServer
+
+<JobCard OnViewJob="OnViewJob"></JobCard>
+
+@* <div class="job-overview">
     <h2>Job Overview</h2>
 
     <div class="job-header">
-        <h3>Junior Frontend Developer</h3>
+        <h3>@CurrentJob.Title</h3>
 
         <ButtonComp Text="Quick Apply" />
     </div>
     <p>
-        We are seeking an ambitious, detail-oriented Junior Frontend Developer to join our growing engineering team. 
-        You will work closely with senior developers, UX designers, and product managers to build clean, accessible, and high-performing web applications.
-        This role is perfect for someone eager to learn on the job, refine their coding skills, and deliver exceptional user interfaces.
+        @CurrentJob.Description
     </p>
 
-    <p><strong>Salary:</strong> £28,000 - £35,000 per year</p>
-    <p><strong>Job Type:</strong> Full-time</p>
-    <p><strong>Experience:</strong> Entry level</p>
-    <p><strong>Tech Stack:</strong> HTML, CSS, Blazor, C#</p>
-    <p><strong>Visa Sponsorship:</strong> Not specified</p>
+    <h6>@CurrentJob.EmployerName</h6>
+    <p><strong>@CurrentJob.Location</strong> </p>
+    <p><strong>@CurrentJob.Url</strong> </p>
+</div> *@
 
-    <h6>Key Responsibilities</h6>
-    <p><strong>Feature Building:</strong> Assist in building and maintaining modern, user-friendly web features using frameworks like React or Next.js.</p>
-    <p><strong>Collaborarion:</strong> Work alongside senior developers to integrate frontend components with backend REST APIs and web services.</p>
-    <p><strong>UI Development:</strong> Translate UX wireframes and design mock-ups into clean, responsive, and accessible HTML, CSS, and JavaScript.</p>
-    <p><strong>Testing & Debugging:</strong> Write unit tests and participate in code reviews to learn best practices and ensure optimal code quality.</p>
-    <p><strong>Performnace:</strong> Optimize web pages and applications for maximum speed, scalability, and cross-browser compatibility.</p>
-</div>
+@code {
+    [Parameter]
+    public Job? CurrentJob { get; set; } 
+
+    private void OnViewJob(Job job)
+    {
+        CurrentJob = job;
+    }
+}
