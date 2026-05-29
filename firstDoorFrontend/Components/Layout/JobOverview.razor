@@ -4,21 +4,19 @@
 @if (CurrentJob != null)
 {
     <div class="job-overview">
-        <JobCard Job="CurrentJob"></JobCard>
         <h2>Job Overview</h2>
 
         <div class="job-header">
             <h3>@CurrentJob.Title</h3>
 
-            <ButtonComp Text="Quick Apply" />
+            <a href="@CurrentJob.Url" target="blank" class="btn btn-primary">Quick apply</a>
         </div>
         <p>
             @CurrentJob.Description
         </p>
 
         <h6>@CurrentJob.EmployerName</h6>
-        <p><strong>@CurrentJob.Location</strong> </p>
-        <p><strong>@CurrentJob.Url</strong> </p>
+        <p><strong>Location: </strong>@CurrentJob.Location</p>
     </div>
 }
 
