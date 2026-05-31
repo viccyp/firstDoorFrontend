@@ -2,21 +2,30 @@
 @using Microsoft.AspNetCore.Components
 @rendermode InteractiveServer
 
+@if (Job != null) 
+{
+    <div class="job-card">
+        <div>
+            <h3>@Job.Title</h3>
+            <p>Company: @Job.EmployerName</p>
+            <p>Location: @Job.Location</p>
+        </div>
 
-<div class="job-card">
-    <div>
-        <h3>@Job.Title</h3>
-        <p>@Job.EmployerName</p>
-        <p>@Job.Location</p>
+        <button @onclick="() => HandleClick(Job)">View Details</button>
     </div>
+}
 
-    <ButtonComp Text="View Job" />
-</div>
 
 
 @code {
+    [Parameter]
+    public Job? Job { get; set; } 
 
     [Parameter]
-    public Job Job { get; set; } = new Job("Software Engineer","Dell","London","Decription stuff","a URL");
+    public EventCallback<Job> OnViewJob { get; set; }
 
+    private async Task HandleClick(Job job)
+    {
+        await OnViewJob.InvokeAsync(job);
+    }
 }

@@ -19,7 +19,7 @@ else
     <div class="job-list-container">
         @foreach (var job in jobs)
         {
-            <JobCard Job="job" />
+            <JobCard Job="job" OnViewJob="OnJobSelected"/>
         }
     </div>
 }
@@ -31,6 +31,8 @@ else
 
     private bool isError = false;
 
+    [Parameter]
+    public EventCallback<Job> OnJobSelected { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
