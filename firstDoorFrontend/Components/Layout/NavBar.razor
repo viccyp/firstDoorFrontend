@@ -1,4 +1,6 @@
-﻿<nav class="top-navbar">
+﻿@inject NavigationManager Navigation
+
+<nav class="top-navbar">
 
     <div class="logo-div">
         <Logo />
@@ -6,8 +8,15 @@
 
     <div class="button-div">
         <ButtonComp Text="Jobs" />
-        <ButtonComp Text="Saved Jobs" />
+        <button @onclick="@(() => PerformNavigation("saved"))">Saved Jobs</button>
         <ButtonComp Text="Log in" />
     </div>
 
 </nav>
+
+@code {
+    private void PerformNavigation(string route)
+    {
+        Navigation.NavigateTo($"/{route}");
+    }
+}
