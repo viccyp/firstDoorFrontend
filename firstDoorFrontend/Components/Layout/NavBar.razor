@@ -7,16 +7,15 @@
     </div>
 
     <div class="button-div">
-        <ButtonComp Text="Jobs" />
-        <button @onclick="@(() => PerformNavigation("saved"))">Saved Jobs</button>
-        <ButtonComp Text="Log in" />
+        <NavLink href="/">
+            <ButtonComp Text="Jobs"/>
+         </NavLink>
+        <NavLink href="/saved">
+            <ButtonComp Text="Saved Jobs" />
+        </NavLink>
+        <NavLink>
+            <ButtonComp Text="Log in"/>
+        </NavLink>
     </div>
 
 </nav>
-
-@code {
-    private void PerformNavigation(string route)
-    {
-        Navigation.NavigateTo($"/{route}");
-    }
-}
