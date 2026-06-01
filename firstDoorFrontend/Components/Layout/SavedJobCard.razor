@@ -1,0 +1,35 @@
+﻿@using firstDoorFrontEnd.Models
+@using Microsoft.AspNetCore.Components
+@rendermode InteractiveServer
+
+@if (Job != null) 
+{
+    <div class="job-header">
+        <h3>@Job.Title Saved: @Job.TimeSaved</h3>
+
+        <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
+    </div>
+    <p>
+        @((MarkupString)Job.Description)
+    </p>
+
+    <h6>@Job.EmployerName</h6>
+    <p><strong>Location: </strong>@Job.Location</p>
+    <button>Click To Change Status</button>
+
+    @if(Job.Notes.Any())
+    {
+        <h3>Notes: </h3>
+        @foreach (var note in Job.Notes)
+        {
+            <p>@note</p>
+        }
+    }
+}
+
+
+
+@code {
+    [Parameter]
+    public SavedJob? Job { get; set; }
+}
