@@ -37,7 +37,7 @@ else
         isError = false;
         try
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7052/api/FirstDoor");
+            using var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5095/api/FirstDoor");
             var response = await Http.SendAsync(request);
             response.EnsureSuccessStatusCode();
             jobs = await response.Content.ReadFromJsonAsync<List<SavedJob>>();
@@ -56,7 +56,7 @@ else
 
         try
         {
-            var response = await Http.PatchAsync($"https://localhost:7052/api/FirstDoor/{job.Id}", null);
+            var response = await Http.PatchAsync($"http://localhost:5095/api/FirstDoor/{job.Id}", null);
 
             response.EnsureSuccessStatusCode();
 
