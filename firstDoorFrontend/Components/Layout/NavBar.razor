@@ -1,13 +1,21 @@
-﻿<nav class="top-navbar">
+﻿@inject NavigationManager Navigation
+
+<nav class="top-navbar">
 
     <div class="logo-div">
         <Logo />
     </div>
 
     <div class="button-div">
-        <ButtonComp Text="Jobs" />
-        <ButtonComp Text="Saved Jobs" />
-        <ButtonComp Text="Log in" />
+        <NavLink href="/">
+            <ButtonComp Text="Jobs"/>
+         </NavLink>
+        <NavLink href="/saved">
+            <ButtonComp Text="Saved Jobs" />
+        </NavLink>
+        <NavLink>
+            <ButtonComp Text="Log in"/>
+        </NavLink>
     </div>
 
 </nav>

@@ -1,0 +1,51 @@
+﻿@using firstDoorFrontEnd.Models
+@inject HttpClient Http
+@rendermode InteractiveServer
+
+@if (isError)
+{
+    <p>Error loading jobs. Please try again later.</p>
+}
+else if (jobs == null)
+{
+    <p>Loading jobs...</p>
+}
+else if (jobs.Count == 0)
+{
+    <p>No jobs found.</p>
+}
+else
+{
+    <div class="job-list-container">
+        @foreach (var job in jobs)
+        {
+            <SavedJobCard Job="job"></SavedJobCard>
+        }
+    </div>
+}
+
+
+
+@code {
+    private List<SavedJob>? jobs = null;
+
+    private bool isError = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isError = false;
+        try
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7052/api/FirstDoor");
+            var response = await Http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            jobs = await response.Content.ReadFromJsonAsync<List<SavedJob>>();
+            jobs?.OrderBy(j => j.TimeSaved);
+        }
+        catch (Exception ex)
+        {
+            isError = true;
+            Console.WriteLine($"Error fetching jobs: {ex.Message}");
+        }
+    }
+}
