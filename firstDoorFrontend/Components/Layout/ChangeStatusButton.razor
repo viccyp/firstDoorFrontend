@@ -1,0 +1,16 @@
+﻿@using firstDoorFrontEnd.Models;
+
+<h6>Current status: @Job!.Status.ToString()</h6>
+<button @onclick="HandleClick">Click to update status</button>
+
+@code {
+    [Parameter]
+    public SavedJob? Job { get; set; }
+
+    [Parameter] public EventCallback OnClickRequested { get; set; }
+
+    private async Task HandleClick()
+    {
+        await OnClickRequested.InvokeAsync();
+    }
+}
