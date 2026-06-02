@@ -19,7 +19,7 @@ else
     <div class="job-list-container">
         @foreach (var job in jobs)
         {
-            <SavedJobCard Job="job"></SavedJobCard>
+            <SavedJobCard Job="job" OnJobStatusChange="HandleStatusChange"></SavedJobCard>
         }
     </div>
 }
@@ -30,6 +30,7 @@ else
     private List<SavedJob>? jobs = null;
 
     private bool isError = false;
+    private bool statusError = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -40,12 +41,34 @@ else
             var response = await Http.SendAsync(request);
             response.EnsureSuccessStatusCode();
             jobs = await response.Content.ReadFromJsonAsync<List<SavedJob>>();
-            jobs?.OrderBy(j => j.TimeSaved);
+            jobs?.OrderBy(j => j.TimeSaved).ToList();
         }
         catch (Exception ex)
         {
             isError = true;
             Console.WriteLine($"Error fetching jobs: {ex.Message}");
+        }
+    }
+
+    private async Task HandleStatusChange(SavedJob job)
+    {
+        statusError = false;
+
+        try
+        {
+            var response = await Http.PatchAsync($"https://localhost:7052/api/FirstDoor/{job.Id}", null);
+
+            response.EnsureSuccessStatusCode();
+
+            Status newStatus = await response.Content.ReadFromJsonAsync<Status>();
+
+            job.Status = newStatus;
+
+            StateHasChanged();
+        }
+        catch (Exception)
+        {
+            statusError = true;
         }
     }
 }

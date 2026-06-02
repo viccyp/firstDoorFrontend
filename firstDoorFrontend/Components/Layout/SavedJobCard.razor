@@ -15,7 +15,7 @@
 
     <h6>@Job.EmployerName</h6>
     <p><strong>Location: </strong>@Job.Location</p>
-    <button>Click To Change Status</button>
+    <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
 
     @if(Job.Notes.Any())
     {
@@ -32,4 +32,15 @@
 @code {
     [Parameter]
     public SavedJob? Job { get; set; }
+
+    [Parameter]
+    public EventCallback<SavedJob> OnJobStatusChange { get; set; }
+
+    private async Task ForwardClick()
+    {
+        if (Job != null)
+        {
+            await OnJobStatusChange.InvokeAsync(Job);
+        }
+    }
 }
