@@ -1,10 +1,10 @@
-﻿.job-card {
-    width: 520px;
+﻿.saved-job-card {
+    width: max();
     min-height: 95px;
     border: 2px solid #222;
     border-radius: 14px;
     padding: 16px 20px;
-    margin: 24px;
+    margin-bottom: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
