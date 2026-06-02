@@ -2,11 +2,10 @@
     display: flex;
     justify-content: right;
     align-items: center;
-    margin: 0;
 }
 
 .search-input {
-    width: 420px;
+    width: 305px;
     height: 42px;
     border: 2px solid #222;
     padding: 0 12px;
@@ -15,7 +14,6 @@
 
 .search-button {
     margin-left: 30px;
-    margin-right: 60px;
     height: 46px;
     width: 100px;
     border: 2px solid #222;

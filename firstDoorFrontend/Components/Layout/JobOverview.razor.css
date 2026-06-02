@@ -4,6 +4,7 @@
     border-radius: 14px;
     padding: 18px;
     background: white;
+    overflow:auto;
 }
 
 .job-overview h2 {
