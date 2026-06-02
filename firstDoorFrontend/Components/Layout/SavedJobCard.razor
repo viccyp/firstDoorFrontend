@@ -40,7 +40,7 @@
     {
         if (Job != null)
         {
-            await OnJobStatusChange.InvokeAsync();
+            await OnJobStatusChange.InvokeAsync(Job);
         }
     }
 }

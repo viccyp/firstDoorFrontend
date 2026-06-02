@@ -41,7 +41,7 @@ else
             var response = await Http.SendAsync(request);
             response.EnsureSuccessStatusCode();
             jobs = await response.Content.ReadFromJsonAsync<List<SavedJob>>();
-            jobs?.OrderBy(j => j.TimeSaved);
+            jobs?.OrderBy(j => j.TimeSaved).ToList();
         }
         catch (Exception ex)
         {
