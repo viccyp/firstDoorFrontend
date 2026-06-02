@@ -25,7 +25,6 @@ else
 }
 
 
-
 @code {
     private List<Job>? jobs = new();
 
@@ -37,19 +36,37 @@ else
     protected override async Task OnInitializedAsync()
     {
         isError = false;
+
         try
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7052/CareerJet");
-            request.Headers.Add("User-Agent", "Mozilla");
-            var response = await Http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            jobs = await response.Content.ReadFromJsonAsync<List<Job>>();
+            //careerJet call
+            using var careerJetRequest = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5095/CareerJet");
+            careerJetRequest.Headers.Add("User-Agent", "Mozilla");
+
+            var careerJetResponse = await Http.SendAsync(careerJetRequest);
+            careerJetResponse.EnsureSuccessStatusCode();
+
+            var careerJetJobs = await careerJetResponse.Content.ReadFromJsonAsync<List<Job>>() ?? new List<Job>();
+
+            //reed call
+            using var reedRequest = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5095/Reed?keyword=junior&location=London");
+            
+            var reedResponse = await Http.SendAsync(reedRequest);
+            reedResponse.EnsureSuccessStatusCode();
+
+            var reedJobs = await reedResponse.Content.ReadFromJsonAsync<List<Job>>() ?? new List<Job>();
+            Console.WriteLine("About to call Reed");
+        
+            jobs = careerJetJobs
+                .Concat(reedJobs)
+                .ToList();
         }
+
         catch (Exception ex)
         {
             isError = true;
-            Console.WriteLine($"Error fetching jobs: {ex.Message}");
+            //Console.WriteLine($"Error fetching jobs: {ex.Message}");
+            Console.WriteLine(ex);
         }
     }
-
 }
