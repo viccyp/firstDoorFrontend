@@ -1,8 +1,10 @@
-﻿@using Models
+﻿@using firstDoorFrontend.Models
 @using Microsoft.AspNetCore.Components
+@using System.Net.Http.Json
+@inject HttpClient Http
 @rendermode InteractiveServer
 
-@if (Job != null) 
+@if (Job != null)
 {
     <div class="job-card">
         <div>
@@ -12,14 +14,13 @@
         </div>
 
         <button @onclick="() => HandleClick(Job)">View Details</button>
+        <button @onclick="SaveJob">Save Job</button>
     </div>
 }
 
-
-
 @code {
     [Parameter]
-    public Job? Job { get; set; } 
+    public Job? Job { get; set; }
 
     [Parameter]
     public EventCallback<Job> OnViewJob { get; set; }
@@ -27,5 +28,37 @@
     private async Task HandleClick(Job job)
     {
         await OnViewJob.InvokeAsync(job);
+    }
+
+    private async Task SaveJob()
+    {
+        if (Job != null)
+        {
+            var savedJob = new
+            {
+                title = Job.Title,
+                employerName = Job.EmployerName,
+                description = Job.Description,
+                location = Job.Location,
+                url = Job.Url,
+                status = 0
+            };
+
+            var response = await Http.PostAsJsonAsync(
+                "http://localhost:5095/api/FirstDoor/saved-jobs",
+                savedJob
+            );
+
+            //can dlete or alter later (if we want a message to show up)
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Job saved");
+            }
+            else
+            {
+                Console.WriteLine("Failed to save job");
+            }
+        }
     }
 }
