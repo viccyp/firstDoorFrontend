@@ -1,18 +1,23 @@
 ﻿@using firstDoorFrontEnd.Models;
 @using Models;
+@inject HttpClient Http
 @rendermode InteractiveServer
 
 @if (SavedJob != null)
 {
-    <EditForm Model="postNoteRequest" OnValidSubmit="HandleSave" FormName="AddJobNote">
+    <EditForm Model="request" OnValidSubmit="HandleSave" FormName="AddJobNote">
         <DataAnnotationsValidator/>
         <ValidationSummary/>
 
         <div>
             <label>
                 Body: 
-                <InputText @bind-Value="postNoteRequest!.Body"/>
+                <InputText @bind-Value="request!.Body"/>
              </label>
+        </div>
+
+        <div>
+            <button type="submit">Click to add note</button>
         </div>
     </EditForm>
 }
@@ -21,10 +26,33 @@
     [Parameter]
     public SavedJob? SavedJob { get; set; }
 
-    private PostNoteRequest? postNoteRequest = new();
+    private bool postError = false;
+    private bool isPosted = false;
+
+    private PostNoteRequest request = new();
+
+    protected override void OnParametersSet()
+    {
+        request.Id = SavedJob!.Id;
+    }
 
     protected async Task HandleSave()
     {
-        
+        postError = false;
+        isPosted = false;
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:5095/api/Notes", request);
+
+            response.EnsureSuccessStatusCode();
+
+            postError = false;
+            isPosted = true;
+        }
+        catch (Exception)
+        {
+            postError = true;
+        }
     }
 }
