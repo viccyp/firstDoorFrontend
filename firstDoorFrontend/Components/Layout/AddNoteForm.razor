@@ -1,0 +1,12 @@
+﻿@using firstDoorFrontEnd.Models;
+@rendermode InteractiveServer
+
+@if (SavedJob == null)
+{
+    <EditForm Model="" OnValidSubmit="HandleSave" FormName="AddJobNote"></EditForm>
+}
+
+@code {
+    [Parameter]
+    public SavedJob? SavedJob { get; set; }
+}
