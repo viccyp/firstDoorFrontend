@@ -17,6 +17,10 @@
     <p><strong>Location: </strong>@Job.Location</p>
     <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
 
+    <button class="btn btn-danger" @onclick="DeleteJob">
+        ✖️
+    </button>
+
     @if(Job.Notes.Any())
     {
         <h3>Notes: </h3>
@@ -36,11 +40,22 @@
     [Parameter]
     public EventCallback<SavedJob> OnJobStatusChange { get; set; }
 
+    [Parameter]
+    public EventCallback<SavedJob> OnDeleteRequested { get; set; }
+
     private async Task ForwardClick()
     {
         if (Job != null)
         {
             await OnJobStatusChange.InvokeAsync(Job);
+        }
+    }
+
+    private async Task DeleteJob()
+    {
+        if (Job != null)
+        {
+            await OnDeleteRequested.InvokeAsync(Job);
         }
     }
 }

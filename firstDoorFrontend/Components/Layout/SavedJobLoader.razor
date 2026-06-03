@@ -16,10 +16,13 @@ else if (jobs.Count == 0)
 }
 else
 {
-    <div class="job-list-container">
+    <div class="saved-job-list-container">
         @foreach (var job in jobs)
         {
-            <SavedJobCard Job="job" OnJobStatusChange="HandleStatusChange"></SavedJobCard>
+            <div class="saved-job-card">
+            <SavedJobCard Job="job" OnJobStatusChange="HandleStatusChange" OnDeleteRequested="HandleDelete"></SavedJobCard>
+
+            </div>
         }
     </div>
 }
@@ -69,6 +72,25 @@ else
         catch (Exception)
         {
             statusError = true;
+        }
+    }
+
+    
+    private async Task HandleDelete(SavedJob job)
+    {
+        try
+        {
+            var response = await Http.DeleteAsync($"http://localhost:5095/api/FirstDoor/{job.Id}");
+
+            response.EnsureSuccessStatusCode();
+
+            jobs?.Remove(job);
+
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting job: {ex.Message}");
         }
     }
 }
