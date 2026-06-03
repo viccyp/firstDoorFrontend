@@ -18,6 +18,9 @@
 
     <div class="job-header">
             <h3>@Job.Title</h3>
+            <div class="employer-name">
+                @Job.EmployerName
+            </div>
             <span>Saved: @Job.TimeSaved</span>
 
         <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
@@ -25,17 +28,17 @@
     <div class="job-description">
         @((MarkupString)Job.Description)
         </div>
-
-    <h6>@Job.EmployerName</h6>
     <p><strong>Location: </strong>@Job.Location</p>
-    <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
 
-    <button class="btn btn-danger" @onclick="RequestDeleteJob">
+    <div class="buttons">
+    <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
+    <button @onclick="RequestDeleteJob">
         ✖️
     </button>
+    <button @onclick="GoToJob">
+        Manage job
+        </button>
 
-        <div>
-            <button @onclick="GoToJob">Manage job</button>
         </div>
 
     @if(Job.Notes.Any())
