@@ -1,12 +1,30 @@
 ﻿@using firstDoorFrontEnd.Models;
+@using Models;
 @rendermode InteractiveServer
 
-@if (SavedJob == null)
+@if (SavedJob != null)
 {
-    <EditForm FormName="AddJobNote"></EditForm>
+    <EditForm Model="postNoteRequest" OnValidSubmit="HandleSave" FormName="AddJobNote">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+
+        <div>
+            <label>
+                Body: 
+                <InputText @bind-Value="postNoteRequest!.Body"/>
+             </label>
+        </div>
+    </EditForm>
 }
 
 @code {
     [Parameter]
     public SavedJob? SavedJob { get; set; }
+
+    private PostNoteRequest? postNoteRequest = new();
+
+    protected async Task HandleSave()
+    {
+        
+    }
 }

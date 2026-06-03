@@ -2,9 +2,12 @@
 
 namespace firstDoorFrontend.Models
 {
-    public record PostNoteRequest
-    (
-        [MaxLength(500)] string? Body,
-        [Required] int SavedJobId
-    );
+    public class PostNoteRequest
+    {
+        [MaxLength(500)]
+        public string? Body { get; set; } = string.Empty;
+
+        [Required]
+        public int Id { get; set; }
+    }
 }
