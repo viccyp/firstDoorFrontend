@@ -16,11 +16,23 @@ else if (jobs.Count == 0)
 }
 else
 {
+    @if(showDeleteSuccess)
+    {
+        <div class="delete-success">
+            <p>Job deleted successfully!</p>
+        </div>
+    }
+    @if (statusError)
+    {
+        <div class="status-error">
+            <p>Error updating job status. Please try again.</p>
+        </div>
+    }
     <div class="saved-job-list-container">
         @foreach (var job in jobs)
         {
             <div class="saved-job-card">
-            <SavedJobCard Job="job" OnJobStatusChange="HandleStatusChange" OnDeleteRequested="HandleDelete"></SavedJobCard>
+            <SavedJobCard @key="job.Id" Job="job" OnJobStatusChange="HandleStatusChange" OnDeleteRequested="HandleDelete"></SavedJobCard>
 
             </div>
         }
@@ -34,6 +46,7 @@ else
 
     private bool isError = false;
     private bool statusError = false;
+    private bool showDeleteSuccess = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -87,10 +100,25 @@ else
             jobs?.Remove(job);
 
             StateHasChanged();
+
+            await ShowDeleteSuccess();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error deleting job: {ex.Message}");
         }
+    }
+
+    private async Task ShowDeleteSuccess()
+    {
+        showDeleteSuccess = true;
+
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        showDeleteSuccess = false;
+
+        StateHasChanged();
     }
 }
