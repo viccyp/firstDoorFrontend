@@ -1,5 +1,6 @@
 ﻿@using firstDoorFrontEnd.Models;
 @using Models;
+@using System.Text.Json;
 @inject HttpClient Http
 @rendermode InteractiveServer
 
@@ -28,12 +29,14 @@
 }
 else if (!postError && isPosted)
 {
-    <DisplayAddedNote Note="SavedJob!.Notes.Last()" />
+    <DisplayAddedNote Note="JobNote" />
 }
 
 @code {
     [Parameter]
     public SavedJob? SavedJob { get; set; }
+
+    private JobNote? JobNote;
 
     private bool postError = false;
     private bool isPosted = false;
@@ -61,6 +64,13 @@ else if (!postError && isPosted)
 
             postError = false;
             isPosted = true;
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            JobNote = JsonSerializer.Deserialize<JobNote>(content, new JsonSerializerOptions
+            {
+               PropertyNameCaseInsensitive = true
+            });
         }
         catch (Exception)
         {
