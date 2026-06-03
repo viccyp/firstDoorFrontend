@@ -18,9 +18,11 @@
 
     <div class="job-header">
             <h3>@Job.Title</h3>
-            <div class="employer-name">
+            <span class="employer-name">
                 @Job.EmployerName
-            </div>
+            </span>
+            <span class="location"> | @Job.Location</span>
+            <br />
             <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
             <div class="time-saved">Saved: @Job.TimeSaved</div>
 
@@ -29,7 +31,7 @@
     <div class="job-description">
         @((MarkupString)Job.Description)
         </div>
-    <p><strong>Location: </strong>@Job.Location</p>
+    <p><strong>Location: </strong></p>
 
     <div class="buttons">
     <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
