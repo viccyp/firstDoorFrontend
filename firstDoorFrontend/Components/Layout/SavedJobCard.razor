@@ -4,14 +4,16 @@
 
 @if (Job != null) 
 {
+    <div class="saved-job-card">
     <div class="job-header">
-        <h3>@Job.Title Saved: @Job.TimeSaved</h3>
+            <h3>@Job.Title</h3>
+            <span>Saved: @Job.TimeSaved</span>
 
         <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
     </div>
-    <p>
+    <div class="job-description">
         @((MarkupString)Job.Description)
-    </p>
+        </div>
 
     <h6>@Job.EmployerName</h6>
     <p><strong>Location: </strong>@Job.Location</p>
@@ -25,6 +27,7 @@
             <p>@note</p>
         }
     }
+    </div>
 }
 
 
