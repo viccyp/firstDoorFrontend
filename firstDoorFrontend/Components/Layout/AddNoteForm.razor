@@ -22,6 +22,15 @@
     </EditForm>
 }
 
+@if(postError)
+{
+    <p>Failed to add note. Please try again later</p>
+}
+else if (!postError && isPosted)
+{
+    <SavedJobCard Job="SavedJob" />
+}
+
 @code {
     [Parameter]
     public SavedJob? SavedJob { get; set; }
