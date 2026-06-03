@@ -6,6 +6,7 @@
 
 main {
     flex: 1;
+    gap: 0px;
 }
 
 .sidebar {
