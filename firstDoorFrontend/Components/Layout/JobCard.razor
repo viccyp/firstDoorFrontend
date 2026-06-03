@@ -12,9 +12,10 @@
             <p>Company: @Job.EmployerName</p>
             <p>Location: @Job.Location</p>
         </div>
-
+        <div class="buttons">
         <button @onclick="() => HandleClick(Job)">View Details</button>
         <button @onclick="SaveJob">Save Job</button>
+        </div>
     </div>
 }
 

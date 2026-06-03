@@ -21,9 +21,10 @@
             <div class="employer-name">
                 @Job.EmployerName
             </div>
-            <span>Saved: @Job.TimeSaved</span>
+            <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
+            <div class="time-saved">Saved: @Job.TimeSaved</div>
 
-        <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
+        
     </div>
     <div class="job-description">
         @((MarkupString)Job.Description)
