@@ -20,7 +20,7 @@ else
         @foreach (var job in jobs)
         {
             <div class="saved-job-card">
-            <SavedJobCard Job="job" OnJobStatusChange="HandleStatusChange" OnDeleteRequested="HandleDelete"></SavedJobCard>
+            <SavedJobCard @key="job.Id" Job="job" OnJobStatusChange="HandleStatusChange" OnDeleteRequested="HandleDelete"></SavedJobCard>
 
             </div>
         }

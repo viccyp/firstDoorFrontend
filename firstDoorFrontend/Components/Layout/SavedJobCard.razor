@@ -15,6 +15,13 @@
             </div>
         }
 
+        @if(deleteSuccess)
+        {
+            <div class="delete-success">
+                <p>Job deleted successfully!</p>
+            </div>
+        }
+
     <div class="job-header">
             <h3>@Job.Title</h3>
             <span>Saved: @Job.TimeSaved</span>
@@ -57,6 +64,7 @@
     public EventCallback<SavedJob> OnDeleteRequested { get; set; }
 
     private bool showDeleteConfirmation = false;
+    private bool deleteSuccess = false;
 
     private async Task ForwardClick()
     {
@@ -79,11 +87,17 @@
         if (Job != null)
         {
             await OnDeleteRequested.InvokeAsync(Job);
+            deleteSuccess = true;
+            StateHasChanged();
+            await Task.Delay(3000);
+            deleteSuccess = false;
+            StateHasChanged();
         }
     }
 
     private async Task CancelDelete()
     {
         showDeleteConfirmation = false;
+        StateHasChanged();
     }
 }
