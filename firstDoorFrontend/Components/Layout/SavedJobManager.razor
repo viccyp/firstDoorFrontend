@@ -4,6 +4,10 @@
 @rendermode InteractiveServer
 @using firstDoorFrontEnd.Models
 @using System.Text.Json;
+
+<NavBar/>
+
+<div class="page-layout">
     @if (Error != null)
     {
         <pre>@Error</pre>
@@ -29,6 +33,19 @@
             <strong>Location: </strong>@Job?.Location
         </div>
 
+        <div class="notes">
+            @if(Job?.Notes?.Any() == true)
+            {
+                <h3>Notes: </h3>
+                @foreach (var note in Job.Notes)
+                {
+                    <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
+                    <p>@note.Body</p>
+                }
+            }
+        </div>
+
+
     <div class="footer">
         <strong>Saved on: </strong>@Job?.TimeSaved.ToString() <br />
         <strong>Job ID: </strong>@Job?.Id <br />
@@ -38,7 +55,7 @@
     <AddNoteForm SavedJob="Job"/>
 
 </div>
-
+</div>
 @code{
     [Parameter]
     public int Id { get; set; }

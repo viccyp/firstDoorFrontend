@@ -1,4 +1,8 @@
 ﻿.job-list-container {
-    height: 500px;
+/*    border: solid #222;*/
+    background: white;
+    padding: 6px;
+    gap: 2px;
+    height: 100vh;
     overflow-y: auto;
 }

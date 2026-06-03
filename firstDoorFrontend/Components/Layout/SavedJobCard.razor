@@ -25,34 +25,37 @@
 
     <div class="job-header">
             <h3>@Job.Title</h3>
-            <span>Saved: @Job.TimeSaved</span>
-
-        <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
+            <span class="employer-name">
+                @Job.EmployerName
+            </span>
+            <span class="location"> | @Job.Location</span>
+            <br />
+            <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
+            <div class="time-saved">Saved: @Job.TimeSaved</div>
     </div>
+
     <div class="job-description">
         @((MarkupString)Job.Description)
         </div>
 
-    <h6>@Job.EmployerName</h6>
-    <p><strong>Location: </strong>@Job.Location</p>
-    <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
-
-    <button class="btn btn-danger" @onclick="RequestDeleteJob">
-        ✖️
-    </button>
-
-        <div>
-            <button @onclick="GoToJob">Manage job</button>
+        <div class="buttons">
+            <div class="status">
+                Status: @CurrentStatus
+            </div>
+        <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
         </div>
 
-    @if(Job.Notes.Any())
-    {
-        <h3>Notes: </h3>
-        @foreach (var note in Job.Notes)
-        {
-            <p>@note</p>
-        }
-    }
+    <div class="buttons">
+
+    <button @onclick="RequestDeleteJob">
+        ✖️
+    </button>
+    <button @onclick="GoToJob">
+        Manage job
+        </button>
+
+        </div>
+
     </div>
 }
 
@@ -70,6 +73,7 @@
 
     private bool showDeleteConfirmation = false;
     private bool deleteSuccess = false;
+    public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
 
     private async Task ForwardClick()
     {

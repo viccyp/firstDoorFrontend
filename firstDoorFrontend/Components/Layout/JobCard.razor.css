@@ -1,10 +1,10 @@
 ﻿.job-card {
     width: max();
     min-height: 95px;
-    border: 2px solid #222;
+    border: 1px solid #222;
     border-radius: 14px;
     padding: 16px 20px;
-    margin-bottom: 24px;
+    margin-bottom: 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
