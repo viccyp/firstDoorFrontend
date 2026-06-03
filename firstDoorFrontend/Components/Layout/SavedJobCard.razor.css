@@ -13,6 +13,17 @@
     background: white;
 }
 
+.job-header {
+    width: 30%;
+    flex-shrink: 0;
+}
+
+.job-description {
+    flex: 1;
+    overflow: hidden;
+    margin: 0px 8px;
+}
+
     .job-card h3 {
         margin: 0 0 6px 0;
         font-size: 18px;

@@ -4,6 +4,10 @@
 @rendermode InteractiveServer
 @using firstDoorFrontEnd.Models
 @using System.Text.Json;
+
+<NavBar/>
+
+<div class="page-layout">
     @if (Error != null)
     {
         <pre>@Error</pre>
@@ -51,7 +55,7 @@
     <AddNoteForm SavedJob="Job"/>
 
 </div>
-
+</div>
 @code{
     [Parameter]
     public int Id { get; set; }

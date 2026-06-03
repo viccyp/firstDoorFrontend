@@ -32,13 +32,11 @@
             <br />
             <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
             <div class="time-saved">Saved: @Job.TimeSaved</div>
-
-        
     </div>
+
     <div class="job-description">
         @((MarkupString)Job.Description)
         </div>
-    <p><strong>Location: </strong></p>
 
     <div class="buttons">
     <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
