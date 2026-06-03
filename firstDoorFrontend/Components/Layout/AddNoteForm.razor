@@ -44,7 +44,7 @@ else if (!postError && isPosted)
     {
         if (SavedJob != null)
         {
-            request.Id = SavedJob!.Id;
+            request = new PostNoteRequest { Body = request.Body, SavedJobId = SavedJob.Id };
         }
     }
 

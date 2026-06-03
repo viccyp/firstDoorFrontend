@@ -8,6 +8,6 @@ namespace firstDoorFrontend.Models
         public string? Body { get; set; } = string.Empty;
 
         [Required]
-        public int Id { get; set; }
+        public int SavedJobId { get; set; }
     }
 }
