@@ -2,13 +2,11 @@
 @rendermode InteractiveServer
 
 
-<button @onclick="HandleClick">@CurrentStatus.ToString()</button>
+<button @onclick="HandleClick">Toggle</button>
 
 @code {
     [Parameter]
     public SavedJob? Job { get; set; }
-
-    public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
 
     [Parameter] public EventCallback OnClickRequested { get; set; }
 

@@ -38,8 +38,15 @@
         @((MarkupString)Job.Description)
         </div>
 
+        <div class="buttons">
+            <div class="status">
+                Status: @CurrentStatus
+            </div>
+        <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
+        </div>
+
     <div class="buttons">
-    <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
+
     <button @onclick="RequestDeleteJob">
         ✖️
     </button>
@@ -66,6 +73,7 @@
 
     private bool showDeleteConfirmation = false;
     private bool deleteSuccess = false;
+    public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
 
     private async Task ForwardClick()
     {
