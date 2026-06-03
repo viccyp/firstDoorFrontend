@@ -16,6 +16,13 @@
             </div>
         }
 
+        @if(deleteSuccess)
+        {
+            <div class="delete-success">
+                <p>Job deleted successfully!</p>
+            </div>
+        }
+
     <div class="job-header">
             <h3>@Job.Title</h3>
             <span class="employer-name">
@@ -60,6 +67,7 @@
     public EventCallback<SavedJob> OnDeleteRequested { get; set; }
 
     private bool showDeleteConfirmation = false;
+    private bool deleteSuccess = false;
 
     private async Task ForwardClick()
     {
