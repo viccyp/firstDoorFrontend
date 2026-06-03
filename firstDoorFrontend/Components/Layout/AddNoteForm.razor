@@ -42,7 +42,10 @@ else if (!postError && isPosted)
 
     protected override void OnParametersSet()
     {
-        request.Id = SavedJob!.Id;
+        if (SavedJob != null)
+        {
+            request.Id = SavedJob!.Id;
+        }
     }
 
     protected async Task HandleSave()
