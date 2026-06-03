@@ -1,0 +1,80 @@
+﻿@using firstDoorFrontEnd.Models;
+@using Models;
+@using System.Text.Json;
+@inject HttpClient Http
+@rendermode InteractiveServer
+
+@if (SavedJob != null)
+{
+    <EditForm Model="request" OnValidSubmit="HandleSave" FormName="AddJobNote">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+
+        <div>
+            <label>
+                Body: 
+                <InputText @bind-Value="request!.Body"/>
+             </label>
+        </div>
+
+        <div>
+            <button type="submit">Click to add note</button>
+        </div>
+    </EditForm>
+}
+
+@if(postError)
+{
+    <p>Failed to add note. Please try again later</p>
+}
+else if (!postError && isPosted)
+{
+    <DisplayAddedNote Note="JobNote" />
+}
+
+@code {
+    [Parameter]
+    public SavedJob? SavedJob { get; set; }
+
+    private JobNote? JobNote;
+
+    private bool postError = false;
+    private bool isPosted = false;
+
+    private PostNoteRequest request = new();
+
+    protected override void OnParametersSet()
+    {
+        if (SavedJob != null)
+        {
+            request = new PostNoteRequest { Body = request.Body, SavedJobId = SavedJob.Id };
+        }
+    }
+
+    protected async Task HandleSave()
+    {
+        postError = false;
+        isPosted = false;
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:5095/api/Notes", request);
+
+            response.EnsureSuccessStatusCode();
+
+            postError = false;
+            isPosted = true;
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            JobNote = JsonSerializer.Deserialize<JobNote>(content, new JsonSerializerOptions
+            {
+               PropertyNameCaseInsensitive = true
+            });
+        }
+        catch (Exception)
+        {
+            postError = true;
+        }
+    }
+}
