@@ -1,0 +1,77 @@
+﻿@page "/saved/{Id:int}"
+
+@inject HttpClient Http
+@rendermode InteractiveServer
+@using firstDoorFrontEnd.Models
+@using System.Text.Json;
+    @if (Error != null)
+    {
+        <pre>@Error</pre>
+    }
+
+<div saved-job-manager>
+
+    <div class="job-overview">
+
+        <div class="job-header">
+            <h3>@Job?.Title</h3>
+            <div class="employer-name">
+                @Job?.EmployerName
+            </div>
+            <a href="@Job?.Url" target="blank" class="btn btn-primary">Quick apply</a>
+        </div>
+
+        <div class="job-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+
+        <div class="location"></div>
+            <strong>Location: </strong>@Job?.Location
+        </div>
+
+    <div class="footer">
+        <strong>Saved on: </strong>@Job?.TimeSaved.ToString() <br />
+        <strong>Job ID: </strong>@Job?.Id <br />
+        <strong>Source: </strong>@Job?.Url <br />
+
+
+
+</div>
+
+</div>
+
+@code{
+    [Parameter]
+    public int Id { get; set; }
+    private SavedJob? Job { get; set; }
+    private string? Error;
+
+   
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            var response = await Http.GetAsync($"https://localhost:8443/api/FirstDoor/{Id}");
+
+            Console.WriteLine($"Status: {response}");
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            var json = await Http.GetStringAsync($"https://localhost:8443/api/FirstDoor/{Id}");
+
+            Console.WriteLine(content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Job = JsonSerializer.Deserialize<SavedJob>(content, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            }
+        }
+        catch (Exception ex)
+        {
+            Error = ex.ToString();
+        }
+    }
+}

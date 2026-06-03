@@ -1,5 +1,6 @@
 ﻿@using firstDoorFrontEnd.Models
 @using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
 @if (Job != null) 
@@ -39,6 +40,10 @@
     <button class="btn btn-danger" @onclick="RequestDeleteJob">
         ✖️
     </button>
+
+        <div>
+            <button @onclick="GoToJob">Manage job</button>
+        </div>
 
     @if(Job.Notes.Any())
     {
@@ -93,5 +98,10 @@
     private async Task CancelDelete()
     {
         showDeleteConfirmation = false;
+    }
+
+    private void GoToJob()
+    {
+        NavigationManager.NavigateTo($"/saved/{Job!.Id}");
     }
 }
