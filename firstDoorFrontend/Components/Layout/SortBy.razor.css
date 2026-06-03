@@ -1,7 +1,7 @@
 ﻿.sort-container {
+    margin-top: 60px;
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
 .sort-select {

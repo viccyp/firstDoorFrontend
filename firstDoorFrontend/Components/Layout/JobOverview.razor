@@ -19,9 +19,9 @@ else
 
             <a href="@CurrentJob.Url" target="blank" class="btn btn-primary">Quick apply</a>
         </div>
-        <p>
+        <div class="job-description">
             @((MarkupString)CurrentJob.Description)
-        </p>
+        </div>
 
         <h6>@CurrentJob.EmployerName</h6>
         <p><strong>Location: </strong>@CurrentJob.Location</p>
