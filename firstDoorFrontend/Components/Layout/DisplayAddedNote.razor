@@ -1,0 +1,16 @@
+﻿@using firstDoorFrontEnd.Models
+@rendermode InteractiveServer
+
+<h3>Success! Note added: </h3>
+
+@if (Note is not null)
+{
+    <h4>Note @Note.Id</h4>
+    <p>Body: @Note.Body</p>
+    <p>Time Saved: @Note.DateSaved.ToString("dddd, dd MMMM yyyy")</p>
+}
+
+@code {
+    [Parameter]
+    public JobNote? Note { get; set; }
+}
