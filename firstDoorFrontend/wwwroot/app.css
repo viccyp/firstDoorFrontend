@@ -5,6 +5,20 @@
     align-items: flex-start;
     gap: 40px;
 }*/
+@font-face {
+    font-family: 'PixelOperator';
+    src: url('/fonts/PixelOperator.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.firstdoor-font {
+    font-family: PixelOperator, sans-serif;
+}
+
+body {
+    font-family: PixelOperator, sans-serif;
+}
 
 .page-layout {
     padding: 10px;
@@ -50,6 +64,7 @@ html, body {
 }
 
 .header {
+    font-family: PixelOperator, sans-serif;
     color: white;
     padding: 40px;
     padding-top: 50px;
