@@ -12,7 +12,7 @@
 }
 
     .job-card:hover {
-        background: rgba(15,15,15);
+        background: rgba(226, 244, 255, 0.1);
         box-shadow: 0 4px 8px rgba(54, 68, 211, 0.4);
     }
 

@@ -8,8 +8,13 @@
 
 <NavBar />
     <div class="header">
-        <h1>@Job?.Title</h1>
+        
+        <div class="status"
+         style="background-color: @StatusColour;">
         </div>
+    <h1>@Job?.Title</h1>
+    </div>
+
 <div class="page-layout">
     @if (Error != null)
     {
@@ -35,8 +40,9 @@
                 @((MarkupString)Job!.Description)
             </div>
 
-            <div class="location"></div>
+            <div class="location">
                 <strong>Location: </strong>@Job?.Location
+            </div>
             </div>
 
             <div class="notes">
@@ -89,6 +95,14 @@
     public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
     private int? editingNoteId;
     private string editableBody = "";
+    private string StatusColour => Job?.Status switch
+    {
+        Status.To_Apply => "#87CEFA",      // light blue
+        Status.Applied => "#90EE90",       // light green
+        Status.Interviewing => "#006400",  // dark green
+        Status.Rejected => "#DC143C",      // red
+        _ => "#808080"                     // grey fallback - should add accepted status? or is that ridiculous?
+    };
 
     protected override async Task OnParametersSetAsync()
     {
@@ -168,4 +182,6 @@
     {
         editingNoteId = null;
     }
+
+    
 }

@@ -64,11 +64,16 @@ html, body {
 }
 
 .header {
+    display: flex;
+    align-items: center;
+    gap: 60px;
     font-family: PixelOperator, sans-serif;
     color: white;
     padding: 40px;
     padding-top: 50px;
+    border-top: 2px solid white;
     border-bottom: 2px solid white;
+    background-color: rgb(17, 0, 51);
 }
 
     h1,h2,h3 {
@@ -92,3 +97,10 @@ html, body {
     font-size: 16px;
     border-radius: 14px;
 }
+
+.status {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
