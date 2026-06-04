@@ -40,6 +40,13 @@
             </div>
 
             <div class="notes">
+                @if(showNoteDeleteSuccess)
+                {
+                    <div class="delete-success">
+                        <p>Job deleted successfully!</p>
+                    </div>
+                }
+
                 @if(Job?.Notes?.Any() == true)
                 {
                     <h3>Notes: </h3>
