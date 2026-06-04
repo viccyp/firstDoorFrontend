@@ -7,7 +7,6 @@
 }
 
 .page-layout {
-    background-color: black;
     padding: 10px;
     display: flex;
     align-items: flex-start;
@@ -43,4 +42,8 @@
 
 .href {
     text-decoration: none;
+}
+
+html, body {
+    background-color: black;
 }

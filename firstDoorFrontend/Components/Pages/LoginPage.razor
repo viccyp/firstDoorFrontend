@@ -1,0 +1,67 @@
+﻿@using firstDoorFrontend.Components.Layout
+@rendermode InteractiveServer
+@page "/login"
+
+<NavBar />
+
+<div class="login-container">
+    <div class="login-box">
+
+        <h2>Login</h2>
+
+        <div>
+            <label for="username" >Username: </label>
+            <input type="text" id="username" placeholder="John Appleseed" @bind="_username" />
+        </div>
+
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" id="password" placeholder="Password" @bind="_password" />
+        </div>
+
+        <button class="buttonComp" @onclick="HandleLogin">Log In</button>
+
+        @if(!string.IsNullOrEmpty(_errorMessage))
+        {
+            <p>@_errorMessage</p>
+        }
+        else if (_isProcessing)
+        {
+            <p>Contacting server...</p>
+        }
+
+    </div>
+</div>
+
+@code {
+    private string _username = string.Empty;
+    private string _password = string.Empty;
+    private string _errorMessage = string.Empty;
+    private string _successMessage = string.Empty;
+    private bool _isProcessing = false;
+
+    private async Task HandleLogin()
+    {
+        if (string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password))
+        {
+            _errorMessage = "Please enter both a username and a password";
+            return;
+        }
+
+        _errorMessage = string.Empty;
+        _isProcessing = true;
+
+        await Task.Delay(2000);
+
+        if (_username == "admin" && _password == "password")
+        {
+            _errorMessage = "Login successful!";
+        }
+        else
+        {
+            _errorMessage = "Invalid username or password";
+        }
+
+        _isProcessing = false;
+    }
+}
