@@ -17,3 +17,10 @@
     box-sizing: border-box;
     text-align: center;
 }
+
+.login-box div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
