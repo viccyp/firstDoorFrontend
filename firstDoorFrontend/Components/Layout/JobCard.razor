@@ -6,6 +6,7 @@
 
 @if (Job != null)
 {
+
     <div class="job-card">
         <div>
             <h3>@Job.Title</h3>
@@ -13,8 +14,8 @@
             <p>Location: @Job.Location</p>
         </div>
         <div class="buttons">
-        <button @onclick="() => HandleClick(Job)">View Details</button>
-        <button @onclick="SaveJob">Save Job</button>
+            <button class="buttonComp" @onclick="() => HandleClick(Job)">View Details</button>
+            <button class="buttonComp" @onclick="SaveJob">♥️</button>
         </div>
     </div>
 }
@@ -25,6 +26,7 @@
 
     [Parameter]
     public EventCallback<Job> OnViewJob { get; set; }
+    private bool jobSaved { get; set; }
 
     private async Task HandleClick(Job job)
     {
@@ -54,7 +56,7 @@
 
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("Job saved");
+                jobSaved = true;
             }
             else
             {

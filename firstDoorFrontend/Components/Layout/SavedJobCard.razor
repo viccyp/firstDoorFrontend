@@ -24,37 +24,51 @@
         }
 
     <div class="job-header">
+
             <h3>@Job.Title</h3>
-            <span class="employer-name">
-                @Job.EmployerName
-            </span>
-            <span class="location"> | @Job.Location</span>
-            <br />
-            <a href="@Job.Url" target="blank" class="btn btn-primary">Quick apply</a>
-            <div class="time-saved">Saved: @Job.TimeSaved</div>
+
+            <div class="job-meta">
+                <span class="employer-name">@Job.EmployerName</span>
+                <span class="location"> | @Job.Location</span>
+            </div>
+
+            <div class="time-saved">
+                Saved @Job.TimeSaved
+            </div>
+
+            <a href="@Job.Url"
+               target="_blank"
+               class="buttonComp quick-apply-button">
+                Quick Apply
+            </a>
     </div>
 
     <div class="job-description">
         @((MarkupString)Job.Description)
         </div>
 
-        <div class="buttons">
+        <div class="job-actions">
+
             <div class="status">
                 Status: @CurrentStatus
             </div>
-        <ChangeStatusButton Job="Job" OnClickRequested="ForwardClick"></ChangeStatusButton>
+
+            <ChangeStatusButton Job="Job"
+                                OnClickRequested="ForwardClick" />
+
+            <button class="buttonComp"
+                    @onclick="GoToJob">
+                Manage
+            </button>
+
+            <button class="buttonComp danger"
+                    @onclick="RequestDeleteJob">
+                Delete
+            </button>
+
         </div>
 
-    <div class="buttons">
 
-    <button @onclick="RequestDeleteJob">
-        ✖️
-    </button>
-    <button @onclick="GoToJob">
-        Manage job
-        </button>
-
-        </div>
 
     </div>
 }

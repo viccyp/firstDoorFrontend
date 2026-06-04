@@ -2,10 +2,10 @@
     width: 260px;
     height: 80vh;
     min-height: 300px;
-    border: 2px solid #222;
+    border: 2px solid white;
+    border-radius: 14px;
     padding: 35px 28px;
-    background: white;
-    background-color: rgba(4, 170, 109, 0.3);
+    background: black;
 }
 
 .filters-container h3 {
