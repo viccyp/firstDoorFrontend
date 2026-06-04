@@ -24,3 +24,9 @@
     align-items: center;
     width: 100%;
 }
+
+.login-box input {
+    width: 200px;
+    padding: 6px;
+    box-sizing: border-box;
+}
