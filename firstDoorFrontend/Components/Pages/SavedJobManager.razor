@@ -41,8 +41,15 @@
                     <h3>Notes: </h3>
                     @foreach (var note in Job.Notes)
                     {
-                        <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
-                        <p class="text-break">@note.Body</p>
+                        @if(editingNoteId == note.Id)
+                        {
+                            <p>Test</p>
+                        }
+                        else 
+                        {
+                            <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
+                            <p class="text-break">@note.Body</p>
+                        }
                     }
                 }
             </div>
