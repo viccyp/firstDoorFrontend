@@ -172,4 +172,14 @@
     {
         editingNoteId = null;
     }
+
+    private void RequestDeleteNote(int noteId)
+    {
+        deletingNoteId = noteId;
+    }
+
+    private void CancelDeleteNote()
+    {
+        deletingNoteId = null;
+    }
 }
