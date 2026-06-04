@@ -23,6 +23,10 @@
     {
         <p>@_errorMessage</p>
     }
+    else
+    {
+        <p>Attempting login...</p>
+    }
 
 </div>
 
@@ -37,6 +41,9 @@
         {
             _errorMessage = "Please enter both a username and a password";
         }
-        
+        else
+        {
+            _errorMessage = string.Empty;
+        }
     }
 }
