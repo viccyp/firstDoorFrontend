@@ -16,7 +16,7 @@
                     class="form-control" 
                     rows="5"
                     Enter a note for this job here: 
-                    @bind-Value="request!.Body" @bind-Value:event="oninput">
+                    @bind="request!.Body" @bind:event="oninput">
                  </textarea>
              <div class="@(request.Body?.Length > 500 ? "text-danger" : "")">Character count: @(request.Body?.Length ?? 0)/500</div>
         </div>
