@@ -43,7 +43,9 @@
                     {
                         @if(editingNoteId == note.Id)
                         {
-                            <p>Test</p>
+                            <textarea @bind="editableBody" class="form-control"></textarea>
+                            <button class="btn-success">Save</button>
+                            <button class="btn-danger">Cancel</button>
                         }
                         else 
                         {
