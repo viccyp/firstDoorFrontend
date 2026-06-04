@@ -12,9 +12,10 @@
 
         <div>
             <label>
-                Body: 
-                <InputText @bind-Value="request!.Body"/>
+                Enter a note here: 
+                <input @bind-Value="request!.Body" @bind-Value:event="oninput"/>
              </label>
+             <div class="@(request.Body?.Length > 500 ? "text-danger" : "")">Character count: @(request.Body?.Length ?? 0)/500</div>
         </div>
 
         <div>
