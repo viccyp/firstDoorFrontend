@@ -49,6 +49,7 @@
                         {
                             <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
                             <p class="text-break">@note.Body</p>
+                            <button class="buttonComp" @onclick="() => EnableEdit(note)">Edit</button>
                         }
                     }
                 }
@@ -74,7 +75,7 @@
     private string? Error;
 
     private int? editingNoteId;
-    private string editableBody = "";
+    private string? editableBody = "";
 
     protected override async Task OnParametersSetAsync()
     {
@@ -113,5 +114,11 @@
             var u when u.Contains("www.reed.co.uk/jobs", StringComparison.OrdinalIgnoreCase) => "Reed",
             _ => "No recognised url provided"
         };
+    }
+
+    private void EnableEdit(JobNote note)
+    {
+        editingNoteId = note.Id;
+        editableBody = note.Body!;
     }
 }
