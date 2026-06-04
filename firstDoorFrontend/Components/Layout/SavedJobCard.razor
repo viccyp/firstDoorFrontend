@@ -28,22 +28,24 @@
             <h3>@Job.Title</h3>
 
             <div class="job-meta">
-                <span class="employer-name">@Job.EmployerName</span>
+                <span class="employer-name"><strong>@Job.EmployerName</strong></span>
                 <span class="location"> | @Job.Location</span>
             </div>
 
-            <div class="time-saved">
-                Saved @Job.TimeSaved
-            </div>
+
 
             <a href="@Job.Url"
                target="_blank"
                class="buttonComp quick-apply-button">
                 Apply on website
             </a>
+            <div class="time-saved">
+                Saved @Job.TimeSaved
+            </div>
     </div>
 
     <div class="job-description">
+        <strong>Description</strong><br />
         @((MarkupString)Job.Description)
         </div>
 
