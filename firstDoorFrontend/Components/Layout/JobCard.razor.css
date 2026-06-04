@@ -37,3 +37,7 @@
         background: aquamarine;
     }
 
+.saved-success {
+    border-color: #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}

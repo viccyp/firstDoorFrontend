@@ -7,7 +7,7 @@
 @if (Job != null)
 {
 
-    <div class="job-card">
+    <div class="job-card  @(jobSaved ? "saved-success" : "")">
         <div>
             <h3>@Job.Title</h3>
             <p>Company: @Job.EmployerName</p>
