@@ -41,13 +41,18 @@
                     <h3>Notes: </h3>
                     @foreach (var note in Job.Notes)
                     {
-                        @if(editingNoteId == note.Id)
+                        @if (editingNoteId == note.Id)
                         {
-                            <textarea @bind="editableBody" class="form-control"></textarea>
-                            <button class="btn-success" @onclick="() => SaveNote(note)">Save</button>
+                            <textarea @bind="editableBody" @bind:event="oninput" class="form-control" rows="3"></textarea>
+
+                            <div class="@(editableBody?.Length > 500 ? "text-danger" : "")">
+                                Character count: @(editableBody?.Length ?? 0)/500
+                            </div>
+
+                            <button class="btn-success" disabled="@(editableBody!.Length > 500)" @onclick="() => SaveNote(note)">Save</button>
                             <button class="btn-danger" @onclick="CancelEdit">Cancel</button>
                         }
-                        else 
+                        else
                         {
                             <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
                             <p class="text-break">@note.Body</p>
