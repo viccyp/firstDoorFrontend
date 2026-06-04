@@ -82,7 +82,7 @@
     private string? Error;
 
     private int? editingNoteId;
-    private string? editableBody = "";
+    private string editableBody = "";
 
     protected override async Task OnParametersSetAsync()
     {
@@ -126,7 +126,7 @@
     private void EnableEdit(JobNote note)
     {
         editingNoteId = note.Id;
-        editableBody = note.Body!;
+        editableBody = note.Body?.Trim() ?? "";
     }
 
     private void SaveNote(JobNote note)
