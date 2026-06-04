@@ -4,3 +4,10 @@
     gap: 20px;
     padding: 20px;
 }
+
+.search-input {
+    width: 40%;
+    margin-left: 20px;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
