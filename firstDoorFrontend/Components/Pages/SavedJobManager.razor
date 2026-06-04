@@ -14,7 +14,7 @@
         <pre>@Error</pre>
     }
 @if (Job != null) {
-    <div saved-job-manager>
+    <div class="saved-job-manager">
 
         <div class="job-overview">
 
@@ -45,8 +45,23 @@
                     <h3>Notes: </h3>
                     @foreach (var note in Job.Notes)
                     {
-                        <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
-                        <p class="text-break">@note.Body</p>
+                        @if (editingNoteId == note.Id)
+                        {
+                            <textarea @bind="editableBody" @bind:event="oninput" class="form-control" rows="3"></textarea>
+
+                            <div class="@(editableBody?.Length > 500 ? "text-danger" : "")">
+                                Character count: @(editableBody?.Length ?? 0)/500
+                            </div>
+
+                            <button class="btn-success" disabled="@(editableBody!.Length > 500)" @onclick="() => SaveNote(note)">Save</button>
+                            <button class="btn-danger" @onclick="CancelEdit">Cancel</button>
+                        }
+                        else
+                        {
+                            <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
+                            <p class="text-break">@note.Body</p>
+                            <button class="buttonComp" @onclick="() => EnableEdit(note)">Edit Note @note.Id</button>
+                        }
                     }
                 }
             </div>
@@ -79,6 +94,8 @@
     private bool statusError = false;
     public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
 
+    private int? editingNoteId;
+    private string editableBody = "";
 
     protected override async Task OnParametersSetAsync()
     {
@@ -147,5 +164,23 @@
         {
             await OnJobStatusChange.InvokeAsync(Job);
         }
+    }
+
+    private void EnableEdit(JobNote note)
+    {
+        editingNoteId = note.Id;
+        editableBody = note.Body?.Trim() ?? "";
+    }
+
+    private void SaveNote(JobNote note)
+    {
+        note.Body = editableBody;
+
+        editingNoteId = null;
+    }
+
+    private void CancelEdit()
+    {
+        editingNoteId = null;
     }
 }
