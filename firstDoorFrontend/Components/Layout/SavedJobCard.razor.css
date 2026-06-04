@@ -66,3 +66,7 @@
 .quick-apply-button {
     width: fit-content;
 }
+
+.saved-job-card:hover {
+    background: rgba(18,18,18);
+}
