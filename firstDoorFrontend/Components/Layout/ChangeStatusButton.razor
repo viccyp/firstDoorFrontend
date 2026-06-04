@@ -10,6 +10,10 @@
 
     [Parameter] public EventCallback OnClickRequested { get; set; }
 
+    [Parameter]
+    public EventCallback<SavedJob> OnJobStatusChange { get; set; }
+
+
     private async Task HandleClick()
     {
         await OnClickRequested.InvokeAsync();

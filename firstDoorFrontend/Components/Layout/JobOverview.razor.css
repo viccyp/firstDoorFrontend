@@ -1,10 +1,10 @@
 ﻿.job-overview {
-    width: 960px;
-    height: 80vh;
+    width: 80vh;
+    height: 100vh;
     min-height: 500px;
     border: 2px solid white;
     border-radius: 14px;
-    padding: 18px;
+    padding: 40px;
     background: black;
     overflow-y: auto;
 }
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .job-description {
@@ -52,4 +52,9 @@
 .saved-success {
     border-color: #22c55e;
     box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}
+
+.h2 {
+    background-color: white;
+    text-align: left;
 }
