@@ -28,8 +28,16 @@ else
             <p>Error updating job status. Please try again.</p>
         </div>
     }
+
+    <input type="text"
+           class="form-control search-input"
+           placeholder="Search saved jobs..."
+           @bind="SearchTerm"
+           @bind:event="oninput" />
+
+
     <div class="saved-job-list-container">
-        @foreach (var job in jobs)
+        @foreach (var job in FilteredJobs())
         {
             <div class="saved-job-card">
             <SavedJobCard @key="job.Id" Job="job" OnDeleteRequested="HandleDelete"></SavedJobCard>
@@ -47,6 +55,8 @@ else
     private bool isError = false;
     private bool statusError = false;
     private bool showDeleteSuccess = false;
+    public string SearchTerm { get; set; } = string.Empty;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -57,7 +67,7 @@ else
             var response = await Http.SendAsync(request);
             response.EnsureSuccessStatusCode();
             jobs = await response.Content.ReadFromJsonAsync<List<SavedJob>>();
-            jobs?.OrderByDescending(j => j.TimeSaved).ToList();
+            jobs = jobs?.OrderByDescending(j => j.TimeSaved).ToList();
         }
         catch (Exception ex)
         {
@@ -68,7 +78,7 @@ else
 
 
 
-    
+
     private async Task HandleDelete(SavedJob job)
     {
         try
@@ -100,5 +110,21 @@ else
         showDeleteSuccess = false;
 
         StateHasChanged();
+    }
+
+    private IEnumerable<SavedJob> FilteredJobs()
+    {
+        if (jobs is null)
+            return Enumerable.Empty<SavedJob>();
+
+    return jobs.Where(a =>
+    string.IsNullOrWhiteSpace(SearchTerm) ||
+    (a.Title?.Contains(
+        SearchTerm,
+        StringComparison.OrdinalIgnoreCase) ?? false) ||
+    (a.Description?.Contains(
+        SearchTerm,
+        StringComparison.OrdinalIgnoreCase) ?? false)
+);
     }
     }

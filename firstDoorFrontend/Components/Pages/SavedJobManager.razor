@@ -7,20 +7,20 @@
 @using firstDoorFrontend.Components.Layout;
 
 <NavBar />
-
+    <div class="header">
+        <h1>@Job?.Title</h1>
+        </div>
 <div class="page-layout">
     @if (Error != null)
     {
         <pre>@Error</pre>
     }
 @if (Job != null) {
+
+
     <div class="saved-job-manager">
-
-        <div class="job-overview">
-
         
             <div class="job-header">
-                    <h3>@Job?.Title</h3>
                     <div class="status">
                         Status: @CurrentStatus
                     </div><button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
@@ -92,7 +92,7 @@
 
         <AddNoteForm SavedJob="Job"/>
 
-        </div>
+        
 }
 </div>
 
@@ -104,7 +104,6 @@
     private string? Error;
     private bool statusError = false;
     public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
-
     private int? editingNoteId;
     private string editableBody = "";
 
