@@ -26,16 +26,20 @@
     <div class="saved-job-manager">
         
             <div class="job-header">
+                <a href="@Job?.Url" target="blank" class="btn btn-primary">Apply on website</a>
+
                     <div class="status">
                         Status: @CurrentStatus
-                    </div><button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
-
+                   
+                    <button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
+                </div>
+                </div>
+                </div>
+                
                 <div class="employer-name">
                     @Job?.EmployerName
                 </div>
-                <a href="@Job?.Url" target="blank" class="btn btn-primary">Quick apply</a>
-            </div>
-
+                <div>
             <div class="job-description">
                 @((MarkupString)Job!.Description)
             </div>

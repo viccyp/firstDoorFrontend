@@ -10,7 +10,7 @@
 }
 
 .job-overview h2 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 24px;
 }
 
@@ -43,6 +43,7 @@
 
 .job-actions {
     width: 180px;
+    text-align: center;
     display: flex;
     flex-direction: row;
     gap: 12px;
