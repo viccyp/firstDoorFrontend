@@ -20,7 +20,11 @@
 
         
             <div class="job-header">
-                <h3>@Job?.Title</h3>
+                    <h3>@Job?.Title</h3>
+                    <div class="status">
+                        Status: @CurrentStatus
+                    </div><ChangeStatusButton Job="Job" OnJobStatusChange="HandleStatusChange" OnClickRequested="ForwardClick" />
+
                 <div class="employer-name">
                     @Job?.EmployerName
                 </div>
@@ -63,8 +67,17 @@
 @code{
     [Parameter]
     public int Id { get; set; }
+
+    [Parameter]
+    public EventCallback<SavedJob> OnClickRequested { get; set; }
+
+    [Parameter]
+    public EventCallback<SavedJob> OnJobStatusChange { get; set; }
+
     private SavedJob? Job { get; set; }
     private string? Error;
+    private bool statusError = false;
+    public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
 
 
     protected override async Task OnParametersSetAsync()
@@ -104,5 +117,35 @@
             var u when u.Contains("www.reed.co.uk/jobs", StringComparison.OrdinalIgnoreCase) => "Reed",
             _ => "No recognised url provided"
         };
+    }
+
+    private async Task HandleStatusChange(SavedJob job)
+    {
+        statusError = false;
+
+        try
+        {
+            var response = await Http.PatchAsync($"http://localhost:5095/api/FirstDoor/{job.Id}", null);
+
+            response.EnsureSuccessStatusCode();
+
+            Status newStatus = await response.Content.ReadFromJsonAsync<Status>();
+
+            job.Status = newStatus;
+
+            StateHasChanged();
+        }
+        catch (Exception)
+        {
+            statusError = true;
+        }
+    }
+
+    private async Task ForwardClick()
+    {
+        if (Job != null)
+        {
+            await OnJobStatusChange.InvokeAsync(Job);
+        }
     }
 }

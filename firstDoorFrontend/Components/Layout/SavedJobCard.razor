@@ -49,12 +49,10 @@
 
         <div class="job-actions">
 
-            <div class="status">
+            @* <div class="status">
                 Status: @CurrentStatus
-            </div>
+            </div> *@
 
-            <ChangeStatusButton Job="Job"
-                                OnClickRequested="ForwardClick" />
 
             <button class="buttonComp"
                     @onclick="GoToJob">
@@ -89,13 +87,8 @@
     private bool deleteSuccess = false;
     public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
 
-    private async Task ForwardClick()
-    {
-        if (Job != null)
-        {
-            await OnJobStatusChange.InvokeAsync(Job);
-        }
-    }
+
+   
 
     private async Task RequestDeleteJob()
     {

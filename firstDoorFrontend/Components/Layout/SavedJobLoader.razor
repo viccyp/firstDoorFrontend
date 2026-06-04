@@ -32,7 +32,7 @@ else
         @foreach (var job in jobs)
         {
             <div class="saved-job-card">
-            <SavedJobCard @key="job.Id" Job="job" OnJobStatusChange="HandleStatusChange" OnDeleteRequested="HandleDelete"></SavedJobCard>
+            <SavedJobCard @key="job.Id" Job="job" OnDeleteRequested="HandleDelete"></SavedJobCard>
 
             </div>
         }
@@ -66,27 +66,7 @@ else
         }
     }
 
-    private async Task HandleStatusChange(SavedJob job)
-    {
-        statusError = false;
 
-        try
-        {
-            var response = await Http.PatchAsync($"http://localhost:5095/api/FirstDoor/{job.Id}", null);
-
-            response.EnsureSuccessStatusCode();
-
-            Status newStatus = await response.Content.ReadFromJsonAsync<Status>();
-
-            job.Status = newStatus;
-
-            StateHasChanged();
-        }
-        catch (Exception)
-        {
-            statusError = true;
-        }
-    }
 
     
     private async Task HandleDelete(SavedJob job)

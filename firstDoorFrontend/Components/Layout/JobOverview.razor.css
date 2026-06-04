@@ -4,7 +4,7 @@
     min-height: 500px;
     border: 2px solid white;
     border-radius: 14px;
-    padding: 18px;
+    padding: 40px;
     background: black;
     overflow-y: auto;
 }
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .job-description {
@@ -56,5 +56,5 @@
 
 .h2 {
     background-color: white;
-    justify-content: left;
+    text-align: left;
 }
