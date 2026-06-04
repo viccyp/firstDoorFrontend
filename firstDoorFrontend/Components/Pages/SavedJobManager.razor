@@ -14,7 +14,7 @@
         <pre>@Error</pre>
     }
 @if (Job != null) {
-    <div saved-job-manager>
+    <div class="saved-job-manager">
 
         <div class="job-overview">
 
@@ -45,7 +45,7 @@
                         {
                             <textarea @bind="editableBody" class="form-control"></textarea>
                             <button class="btn-success" @onclick="() => SaveNote(note)">Save</button>
-                            <button class="btn-danger" @onclick="() => CancelEdit()">Cancel</button>
+                            <button class="btn-danger" @onclick="CancelEdit">Cancel</button>
                         }
                         else 
                         {
