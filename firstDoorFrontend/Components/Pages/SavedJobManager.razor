@@ -192,4 +192,15 @@
             StateHasChanged();
         }
     }
+
+    private async Task ShowDeleteSuccess()
+    {
+        showNoteDeleteSuccess = true;
+        StateHasChanged();
+
+        await Task.Delay(3000);
+
+        showNoteDeleteSuccess = false;
+        StateHasChanged();
+    }
 }
