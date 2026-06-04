@@ -91,6 +91,9 @@
     private int? editingNoteId;
     private string editableBody = "";
 
+    private int? deletingNoteId;
+    private bool showNoteDeleteSuccess = false;
+
     protected override async Task OnParametersSetAsync()
     {
         try
