@@ -48,3 +48,7 @@
 html, body {
     background-color: black;
 }
+
+.header {
+    color: white;
+}

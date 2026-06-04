@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 40px;
 }
 
 .search-input {
@@ -12,12 +13,13 @@
     background-color: white;
     padding: 0 12px;
     font-size: 16px;
+    border-radius: 14px;
 }
 
 .search-button {
     margin-left: 10px;
     height: 46px;
-    width: 100px;
+    width: 70px;
     border: 2px solid #222;
     border-radius: 14px;
     background: white;

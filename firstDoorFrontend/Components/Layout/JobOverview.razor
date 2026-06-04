@@ -5,33 +5,78 @@
 @if (CurrentJob == null)
 {
     <div class="job-overview">
-        <h2>Job Overview</h2>
 
-        <div class="job-header">Click on a job to see more details here!</div>
-    </div>
+        <div class="job-header">
+            <h2>Enterprise Engineer</h2>
+            <div class="job-actions">
+                <button class="buttonComp" @onclick="SaveJob">
+                    @(jobSaved ? "✓" : "♥️")
+                </button>
+
+                <a href="northcoders.com" target="blank" class="buttonComp">Quick apply</a>
+            </div>
+        </div>
+
+        <div class="job-description">
+            <strong>Description</strong><br/>
+                We strive to provide the tech industry with the people it needs, while providing life-changing opportunities to people from all walks of life.
+
+                Northcoders isn’t just a training provider, we’re a diverse digital community with a mission to change lives for the better.
+
+                Northcoders is built upon a vision of a thriving and diverse digital community, and created by people who love tech and believe we’re stronger when everyone is included.
+
+                At a time where technology will define what it means to be human, it’s crucial that we ensure that our future is built by people from all walks of life.
+
+                We help passionate people develop exceptional technology, and help the tech ecosystem thrive.
+            <br /><br />
+            </div>
+
+        <div class="employer">
+            <strong>Employer</strong><br />
+                Northcoders
+            <br /><br />
+            </div>
+
+        <div class="location">
+            <strong>Location</strong><br />
+            Leeds
+            <br /><br />
+        </div>
+        </div>
 }
 else
 {
     <div class="job-overview @(jobSaved ? "saved-success" : "")">
-        <h2>Job Overview</h2>
 
-        <div class="job-header">
-            <h3>@CurrentJob.Title</h3>
+     <div class="job-header">
+        <h2>@CurrentJob.Title</h2>
             <div class="job-actions">
-            <button class="buttonComp" @onclick="SaveJob">
+                <button class="buttonComp" @onclick="SaveJob">
                     @(jobSaved ? "✓" : "♥️")
-            </button>
+                </button>
 
             <a href="@CurrentJob.Url" target="blank" class="buttonComp">Quick apply</a>
             </div>
         </div>
-        <div class="job-description">
-            @((MarkupString)CurrentJob.Description)
-        </div>
 
-        <h6>@CurrentJob.EmployerName</h6>
-        <p><strong>Location: </strong>@CurrentJob.Location</p>
-    </div>
+        <div class="job-description">
+            <strong>Description</strong><br/>
+        @((MarkupString)CurrentJob.Description)
+            <br /><br />
+            </div>
+
+        <div class="employer">
+            <strong>Employer</strong><br />
+        @CurrentJob.EmployerName
+            <br /><br />
+            </div>
+
+        <div class="location">
+            <strong>Location</strong><br />
+            @CurrentJob.Location
+            <br /><br />
+        </div>
+        </div>
 }
 
 @code {

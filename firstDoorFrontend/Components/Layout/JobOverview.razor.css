@@ -1,6 +1,6 @@
 ﻿.job-overview {
     width: 80vh;
-    height: 80vh;
+    height: 100vh;
     min-height: 500px;
     border: 2px solid white;
     border-radius: 14px;
@@ -56,4 +56,5 @@
 
 .h2 {
     background-color: white;
+    justify-content: left;
 }
