@@ -1,0 +1,108 @@
+﻿@page "/saved/{Id:int}"
+
+@inject HttpClient Http
+@rendermode InteractiveServer
+@using firstDoorFrontEnd.Models
+@using System.Text.Json;
+@using firstDoorFrontend.Components.Layout;
+
+<NavBar />
+
+<div class="page-layout">
+    @if (Error != null)
+    {
+        <pre>@Error</pre>
+    }
+@if (Job != null) {
+    <div saved-job-manager>
+
+        <div class="job-overview">
+
+        
+            <div class="job-header">
+                <h3>@Job?.Title</h3>
+                <div class="employer-name">
+                    @Job?.EmployerName
+                </div>
+                <a href="@Job?.Url" target="blank" class="btn btn-primary">Quick apply</a>
+            </div>
+
+            <div class="job-description">
+                @((MarkupString)Job!.Description)
+            </div>
+
+            <div class="location"></div>
+                <strong>Location: </strong>@Job?.Location
+            </div>
+
+            <div class="notes">
+                @if(Job?.Notes?.Any() == true)
+                {
+                    <h3>Notes: </h3>
+                    @foreach (var note in Job.Notes)
+                    {
+                        <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
+                        <p>@note.Body</p>
+                    }
+                }
+            </div>
+
+
+        <div class="footer">
+            <strong>Saved on: </strong>@Job?.TimeSaved.ToString() <br />
+            <strong>Job ID: </strong>@Job?.Id <br />
+            <strong>Source: </strong>@FormatUrl(Job!.Url) <br />
+        </div>
+
+        <AddNoteForm SavedJob="Job"/>
+
+        </div>
+}
+</div>
+
+@code{
+    [Parameter]
+    public int Id { get; set; }
+    private SavedJob? Job { get; set; }
+    private string? Error;
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            var response = await Http.GetAsync($"https://localhost:8443/api/FirstDoor/{Id}");
+
+            Console.WriteLine($"Status: {response}");
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            var json = await Http.GetStringAsync($"https://localhost:8443/api/FirstDoor/{Id}");
+
+            Console.WriteLine(content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Job = JsonSerializer.Deserialize<SavedJob>(content, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            }
+        }
+        catch (Exception ex)
+        {
+            Error = ex.ToString();
+        }
+    }
+
+    private string FormatUrl(string? url)
+    {
+        return url switch
+        {
+            null => "No url provided",
+            var u when u.Contains("jobviewtrack", StringComparison.OrdinalIgnoreCase) => "Career Jet",
+            var u when u.Contains("www.reed.co.uk/jobs", StringComparison.OrdinalIgnoreCase) => "Reed",
+            _ => "No recognised url provided"
+        };
+    }
+}
