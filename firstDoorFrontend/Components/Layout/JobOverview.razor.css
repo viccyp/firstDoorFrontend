@@ -1,5 +1,5 @@
 ﻿.job-overview {
-    width: 960px;
+    width: 80vh;
     height: 80vh;
     min-height: 500px;
     border: 2px solid white;
@@ -52,4 +52,8 @@
 .saved-success {
     border-color: #22c55e;
     box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}
+
+.h2 {
+    background-color: white;
 }

@@ -1,10 +1,10 @@
-.page-layout {
+/*.page-layout {
     padding: 10px;
     min-height:100vh;
     display: flex;
     align-items: flex-start;
     gap: 40px;
-}
+}*/
 
 .page-layout {
     background-color: black;
@@ -33,6 +33,7 @@
 
 .buttons {
         display: flex;
+        flex-direction: column;
         gap: 2px;
         flex-shrink: 0;
 }

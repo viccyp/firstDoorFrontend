@@ -11,14 +11,18 @@
         <ValidationSummary/>
 
         <div>
-            <label>
-                Body: 
-                <InputText @bind-Value="request!.Body"/>
-             </label>
+            <label for="note-body" class="form-label fw-bold">Enter a note for this job here:</label>
+                <textarea id="note-body" 
+                    class="form-control" 
+                    rows="5"
+                    Enter a note for this job here: 
+                    @bind="request!.Body" @bind:event="oninput">
+                 </textarea>
+             <div class="@(request.Body?.Length > 500 ? "text-danger" : "")">Character count: @(request.Body?.Length ?? 0)/500</div>
         </div>
 
         <div>
-            <button type="submit">Click to add note</button>
+            <button type="submit" class="btn btn-primary mt-2">Click to add note</button>
         </div>
     </EditForm>
 }
@@ -71,6 +75,8 @@ else if (!postError && isPosted)
             {
                PropertyNameCaseInsensitive = true
             });
+
+            request.Body = string.Empty;
         }
         catch (Exception)
         {
