@@ -182,4 +182,14 @@
     {
         deletingNoteId = null;
     }
+
+    private async Task ConfirmDeleteNote(JobNote note)
+    {
+        if (Job?.Notes != null && note != null)
+        {
+            deletingNoteId = null;
+            Job.Notes.Remove(note);
+            StateHasChanged();
+        }
+    }
 }
