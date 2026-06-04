@@ -4,30 +4,33 @@
 
 <NavBar />
 
-<div class="align-content-center">
-    <h2>Login</h2>
-
+<div class="login-container">
     <div>
-        <label for="username" >Username: </label>
-        <input type="text" id="username" placeholder="John Appleseed" @bind="_username" />
+
+        <h2>Login</h2>
+
+        <div>
+            <label for="username" >Username: </label>
+            <input type="text" id="username" placeholder="John Appleseed" @bind="_username" />
+        </div>
+
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" id="password" placeholder="Password" @bind="_password" />
+        </div>
+
+        <button @onclick="HandleLogin">Log In</button>
+
+        @if(!string.IsNullOrEmpty(_errorMessage))
+        {
+            <p>@_errorMessage</p>
+        }
+        else
+        {
+            <p>Attempting login...</p>
+        }
+
     </div>
-
-    <div>
-        <label for="password">Password: </label>
-        <input type="password" id="password" placeholder="Password" @bind="_password" />
-    </div>
-
-    <button @onclick="HandleLogin">Log In</button>
-
-    @if(!string.IsNullOrEmpty(_errorMessage))
-    {
-        <p>@_errorMessage</p>
-    }
-    else
-    {
-        <p>Attempting login...</p>
-    }
-
 </div>
 
 @code {
