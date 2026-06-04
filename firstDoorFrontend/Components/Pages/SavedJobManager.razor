@@ -66,6 +66,8 @@
     private SavedJob? Job { get; set; }
     private string? Error;
 
+    private int? editingNoteId;
+    private string editableBody = "";
 
     protected override async Task OnParametersSetAsync()
     {
