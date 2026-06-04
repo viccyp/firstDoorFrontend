@@ -15,7 +15,9 @@
         </div>
         <div class="buttons">
             <button class="buttonComp" @onclick="() => HandleClick(Job)">View Details</button>
-            <button class="buttonComp" @onclick="SaveJob">♥️</button>
+            <button class="buttonComp" @onclick="SaveJob">
+                @(jobSaved ? "✓" : "♥️")
+            </button>
         </div>
     </div>
 }
@@ -57,7 +59,10 @@
             if (response.IsSuccessStatusCode)
             {
                 jobSaved = true;
-
+                StateHasChanged();
+                await Task.Delay(2000);
+                jobSaved = false;
+                StateHasChanged();
             }
             else
             {
