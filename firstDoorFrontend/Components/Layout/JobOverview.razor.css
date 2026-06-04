@@ -35,5 +35,16 @@
 }
 
 .buttonComp {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.job-actions {
+    width: 180px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    flex-shrink: 0;
 }

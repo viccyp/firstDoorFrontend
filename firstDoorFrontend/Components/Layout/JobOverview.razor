@@ -1,4 +1,5 @@
 ﻿@using Models
+@inject HttpClient Http
 @rendermode InteractiveServer
 
 @if (CurrentJob == null)
@@ -16,8 +17,13 @@ else
 
         <div class="job-header">
             <h3>@CurrentJob.Title</h3>
+            <div class="job-actions">
+            <button class="buttonComp" @onclick="SaveJob">
+                    @(jobSaved ? "✓" : "♥️")
+            </button>
 
             <a href="@CurrentJob.Url" target="blank" class="buttonComp">Quick apply</a>
+            </div>
         </div>
         <div class="job-description">
             @((MarkupString)CurrentJob.Description)
@@ -32,8 +38,46 @@ else
     [Parameter]
     public Job? CurrentJob { get; set; } 
 
+    private bool jobSaved;
+
     private void OnViewJob(Job job)
     {
         CurrentJob = job;
+    }
+
+    private async Task SaveJob()
+    {
+        if (CurrentJob != null)
+        {
+            var savedJob = new
+            {
+                title = CurrentJob.Title,
+                employerName = CurrentJob.EmployerName,
+                description = CurrentJob.Description,
+                location = CurrentJob.Location,
+                url = CurrentJob.Url,
+                status = 0
+            };
+
+            var response = await Http.PostAsJsonAsync(
+                "http://localhost:5095/api/FirstDoor/saved-jobs",
+                savedJob
+            );
+
+            //can dlete or alter later (if we want a message to show up)
+
+            if (response.IsSuccessStatusCode)
+            {
+                jobSaved = true;
+                StateHasChanged();
+                await Task.Delay(2000);
+                jobSaved = false;
+                StateHasChanged();
+            }
+            else
+            {
+                Console.WriteLine("Failed to save job");
+            }
+        }
     }
 }
