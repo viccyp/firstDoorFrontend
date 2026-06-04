@@ -25,9 +25,9 @@
         {
             <p>@_errorMessage</p>
         }
-        else
+        else if (_isProcessing)
         {
-            <p>Attempting login...</p>
+            <p>Contacting server...</p>
         }
 
     </div>
@@ -37,16 +37,31 @@
     private string _username = string.Empty;
     private string _password = string.Empty;
     private string _errorMessage = string.Empty;
+    private string _successMessage = string.Empty;
+    private bool _isProcessing = false;
 
-    private void HandleLogin()
+    private async Task HandleLogin()
     {
         if (string.IsNullOrEmpty(_username) || string.IsNullOrEmpty(_password))
         {
             _errorMessage = "Please enter both a username and a password";
+            return;
+        }
+
+        _errorMessage = string.Empty;
+        _isProcessing = true;
+
+        await Task.Delay(2000);
+
+        if (_username == "admin" && _password == "password")
+        {
+            _errorMessage = "Login successful!";
         }
         else
         {
-            _errorMessage = string.Empty;
+            _errorMessage = "Invalid username or password";
         }
+
+        _isProcessing = false;
     }
 }
