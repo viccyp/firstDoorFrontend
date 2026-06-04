@@ -23,7 +23,7 @@
                     <h3>@Job?.Title</h3>
                     <div class="status">
                         Status: @CurrentStatus
-                    </div><ChangeStatusButton Job="Job" OnJobStatusChange="HandleStatusChange" OnClickRequested="ForwardClick" />
+                    </div><button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
 
                 <div class="employer-name">
                     @Job?.EmployerName
@@ -82,12 +82,6 @@
 @code{
     [Parameter]
     public int Id { get; set; }
-
-    [Parameter]
-    public EventCallback<SavedJob> OnClickRequested { get; set; }
-
-    [Parameter]
-    public EventCallback<SavedJob> OnJobStatusChange { get; set; }
 
     private SavedJob? Job { get; set; }
     private string? Error;
@@ -155,14 +149,6 @@
         catch (Exception)
         {
             statusError = true;
-        }
-    }
-
-    private async Task ForwardClick()
-    {
-        if (Job != null)
-        {
-            await OnJobStatusChange.InvokeAsync(Job);
         }
     }
 
