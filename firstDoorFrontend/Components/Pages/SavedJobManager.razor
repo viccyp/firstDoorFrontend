@@ -44,7 +44,7 @@
                         @if(editingNoteId == note.Id)
                         {
                             <textarea @bind="editableBody" class="form-control"></textarea>
-                            <button class="btn-success">Save</button>
+                            <button class="btn-success" @onclick="() => SaveNote(note)">Save</button>
                             <button class="btn-danger">Cancel</button>
                         }
                         else 
@@ -122,5 +122,12 @@
     {
         editingNoteId = note.Id;
         editableBody = note.Body!;
+    }
+
+    private void SaveNote(JobNote note)
+    {
+        note.Body = editableBody;
+
+        editingNoteId = null;
     }
 }
