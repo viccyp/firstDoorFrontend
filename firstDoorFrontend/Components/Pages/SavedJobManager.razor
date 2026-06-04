@@ -45,13 +45,13 @@
                         {
                             <textarea @bind="editableBody" class="form-control"></textarea>
                             <button class="btn-success" @onclick="() => SaveNote(note)">Save</button>
-                            <button class="btn-danger">Cancel</button>
+                            <button class="btn-danger" @onclick="() => CancelEdit()">Cancel</button>
                         }
                         else 
                         {
                             <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
                             <p class="text-break">@note.Body</p>
-                            <button class="buttonComp" @onclick="() => EnableEdit(note)">Edit</button>
+                            <button class="buttonComp" @onclick="() => EnableEdit(note)">Edit Note @note.Id</button>
                         }
                     }
                 }
@@ -128,6 +128,11 @@
     {
         note.Body = editableBody;
 
+        editingNoteId = null;
+    }
+
+    private void CancelEdit()
+    {
         editingNoteId = null;
     }
 }
