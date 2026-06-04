@@ -1,6 +1,46 @@
 .page-layout {
     padding: 10px;
+    min-height:100vh;
     display: flex;
     align-items: flex-start;
     gap: 40px;
+}
+
+.page-layout {
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    color: white;
+    min-height: 100vh;
+}
+
+.buttonComp {
+    border: 1px solid #222;
+    background: #EEE6FF;
+    color: black;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .buttonComp:hover {
+        background: #BDBAFF;
+    }
+
+
+.buttons {
+        display: flex;
+        gap: 2px;
+        flex-shrink: 0;
+}
+
+.a {
+    text-decoration: none;
+}
+
+.href {
+    text-decoration: none;
 }
