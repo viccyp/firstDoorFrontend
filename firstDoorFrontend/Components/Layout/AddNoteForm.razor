@@ -12,7 +12,7 @@
 
         <div>
             <label>
-                Enter a note here: 
+                Enter a note for this job here: 
                 <input @bind-Value="request!.Body" @bind-Value:event="oninput"/>
              </label>
              <div class="@(request.Body?.Length > 500 ? "text-danger" : "")">Character count: @(request.Body?.Length ?? 0)/500</div>
@@ -72,6 +72,8 @@ else if (!postError && isPosted)
             {
                PropertyNameCaseInsensitive = true
             });
+
+            request.Body = string.Empty;
         }
         catch (Exception)
         {
