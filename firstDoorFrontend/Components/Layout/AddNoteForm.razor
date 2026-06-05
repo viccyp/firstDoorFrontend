@@ -46,7 +46,6 @@ else if (showPostSuccess)
     private JobNote? JobNote;
 
     private bool postError = false;
-    private bool isPosted = false;
 
     private bool showPostSuccess = false;
 
@@ -63,7 +62,6 @@ else if (showPostSuccess)
     protected async Task HandleSave()
     {
         postError = false;
-        isPosted = false;
 
         try
         {
@@ -72,7 +70,6 @@ else if (showPostSuccess)
             response.EnsureSuccessStatusCode();
 
             postError = false;
-            isPosted = true;
 
             showPostSuccess = true;
 
