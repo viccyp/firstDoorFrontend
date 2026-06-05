@@ -75,7 +75,7 @@ body {
         padding: 40px;
         border: 2px solid black;
         border-radius: 14px;
-        background-color: #bdbaff56;
+        background-color: rgb(124, 113, 148, 0.20);
     }
 
     .job-status {
@@ -190,7 +190,8 @@ html, body {
     gap: 12px;
 
     .status {
-        width: 10px;
+        min-width: 10px;
+        max-width: 10px;
         height: 10px;
     }
 }
