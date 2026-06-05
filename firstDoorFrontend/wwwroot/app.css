@@ -30,7 +30,7 @@ body {
     min-height: 100vh;
 }
 
-.page-layout-saved-job {
+.page-layout-job-manager {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -38,6 +38,10 @@ body {
     gap: 40px;
     color: white;
     min-height: 100vh;
+
+    .job-header {
+        width: 100px;
+    }
 
     .footer {
         align-items: end;
