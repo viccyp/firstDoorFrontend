@@ -55,11 +55,6 @@
 
         <div class="job-actions">
 
-            @* <div class="status">
-                Status: @CurrentStatus
-            </div> *@
-
-
             <button class="buttonComp"
                     @onclick="GoToJob">
                 Manage
@@ -119,7 +114,7 @@
         }
     }
 
-    private async Task CancelDelete()
+    private void CancelDelete()
     {
         showDeleteConfirmation = false;
     }
