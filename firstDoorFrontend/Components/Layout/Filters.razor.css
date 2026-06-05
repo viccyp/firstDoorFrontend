@@ -4,13 +4,13 @@
     min-height: 300px;
     border: 2px solid white;
     border-radius: 14px;
-    padding: 35px 28px;
+    padding: 40px;
     background: black;
 }
 
 .filters-container h3 {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .filter-options {

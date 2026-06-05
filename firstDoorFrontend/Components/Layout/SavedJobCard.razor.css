@@ -64,6 +64,8 @@
     width: fit-content;
 }
 
+
 .saved-job-card:hover {
-    background: rgba(18,18,18);
+    background: rgba(226, 244, 255, 0.05);
+    box-shadow: 0 4px 8px rgba(54, 68, 211, 0.4);
 }

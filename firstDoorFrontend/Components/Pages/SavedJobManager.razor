@@ -9,14 +9,17 @@
 <NavBar />
     <div class="header">
         
-        <div class="status"
-         style="background-color: @StatusColour;">
-        </div>
+    <button type="button" onclick="history.back()" class="button">
+        ⮜
+    </button>
     <h1>@Job?.Title</h1>
     <a href="@Job?.Url" target="blank" class="buttonComp quick-apply-button">Apply on website</a>
+    <div class="status"
+         style="background-color: @StatusColour;">
+    </div>
     </div>
 
-<div class="page-layout-saved-job">
+<div class="page-layout-job-manager">
     @if (Error != null)
     {
         <pre>@Error</pre>
@@ -25,14 +28,14 @@
 
 
     <div class="saved-job-manager">
-            <div class="job-header">
+
                 
                 <div class="job-status">
                     <h4><strong>Status</strong></h4>
                     @CurrentStatus
                         <button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
                     
-                </div>
+
                 
             </div>
 
@@ -55,7 +58,7 @@
 
         </div>
         <div class="notes-section">
-            <h4><strong>Notes</strong></h4>
+            <h1><strong>Notes</strong></h1>
             @if(showNoteDeleteSuccess)
             {
                 <div class="delete-success">
