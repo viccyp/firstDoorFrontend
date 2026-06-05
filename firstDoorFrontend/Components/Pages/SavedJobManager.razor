@@ -103,7 +103,7 @@
             }
         </div>
 
-        <AddNoteForm SavedJob="Job" />
+        <AddNoteForm SavedJob="Job" OnNoteAdded="HandleNoteAdded" />
         </div>
         <div class="footer">
             <div class="date-saved">
@@ -255,5 +255,15 @@
 
         showNoteDeleteSuccess = false;
         StateHasChanged();
+    }
+
+    private void HandleNoteAdded(JobNote newNote)
+    {
+        if (Job != null)
+        {
+            Job.Notes ??= new List<JobNote>();
+            Job.Notes.Add(newNote);
+            StateHasChanged();
+        }
     }
 }
