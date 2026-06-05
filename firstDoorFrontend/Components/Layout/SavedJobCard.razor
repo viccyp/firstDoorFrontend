@@ -26,7 +26,7 @@
     <div class="job-header">
 
             <h3>@Job.Title</h3>
-
+ 
             <div class="job-meta">
                 <span class="employer-name"><strong>@Job.EmployerName</strong></span>
                 <span class="location"> | @Job.Location</span>
@@ -88,7 +88,14 @@
     private bool showDeleteConfirmation = false;
     private bool deleteSuccess = false;
     public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
-
+    private string StatusColour => Job?.Status switch
+    {
+        Status.To_Apply => "#87CEFA",      // light blue
+        Status.Applied => "#90EE90",       // light green
+        Status.Interviewing => "#006400",  // dark green
+        Status.Rejected => "#DC143C",      // red
+        _ => "#808080"                     // grey fallback - should add accepted status? or is that ridiculous?
+    };
 
    
 

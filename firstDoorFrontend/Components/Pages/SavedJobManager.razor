@@ -13,9 +13,10 @@
          style="background-color: @StatusColour;">
         </div>
     <h1>@Job?.Title</h1>
+    <a href="@Job?.Url" target="blank" class="btn btn-primary">Apply on website</a>
     </div>
 
-<div class="page-layout">
+<div class="page-layout-saved-job">
     @if (Error != null)
     {
         <pre>@Error</pre>
@@ -24,83 +25,96 @@
 
 
     <div class="saved-job-manager">
-        
             <div class="job-header">
-                <a href="@Job?.Url" target="blank" class="btn btn-primary">Apply on website</a>
-
-                    <div class="status">
-                        Status: @CurrentStatus
-                   
-                    <button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
-                </div>
-                </div>
+                
+                <div class="job-status">
+                    <h4><strong>Status</strong></h4>
+                    @CurrentStatus
+                        <button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
+                    
                 </div>
                 
-                <div class="employer-name">
-                    @Job?.EmployerName
-                </div>
-                <div>
+            </div>
+
             <div class="job-description">
+                <h4><strong>Description</strong></h4>
                 @((MarkupString)Job!.Description)
             </div>
 
+            <div class="employer-name">
+                <h4><strong>Employer</strong></h4>
+                @Job?.EmployerName
+            </div>
+
             <div class="location">
-                <strong>Location: </strong>@Job?.Location
-            </div>
+                <h4><strong>Location</strong></h4>
+                @Job?.Location
             </div>
 
-            <div class="notes">
-                @if(showNoteDeleteSuccess)
-                {
-                    <div class="delete-success">
-                        <p>Note deleted successfully!</p>
-                    </div>
-                }
 
-                @if(Job?.Notes?.Any() == true)
+
+        </div>
+        <div class="notes-section">
+            <h4><strong>Notes</strong></h4>
+            @if(showNoteDeleteSuccess)
+            {
+                <div class="delete-success">
+                    <p>Note deleted successfully!</p>
+                </div>
+            }
+        <div class="notes">
+            @if(Job?.Notes?.Any() == true)
+            {
+                @foreach (var note in Job.Notes)
                 {
-                    <h3>Notes: </h3>
-                    @foreach (var note in Job.Notes)
+                    <div class="note">
+                    @if(deletingNoteId == note.Id)
                     {
-                        @if(deletingNoteId == note.Id)
-                        {
-                            <div class="delete-confirmation">
-                                <p>Are you sure you want to delete this note?</p>
-                                <button class="btn btn-danger" @onclick="() => ConfirmDeleteNote(note)">Yes, delete</button>
-                                <button class="btn btn-secondary" @onclick="() => CancelDeleteNote()">No, cancel</button>
-                            </div>
-                        }
-
-                        @if (editingNoteId == note.Id)
-                        {
-                            <textarea @bind="editableBody" @bind:event="oninput" class="form-control" rows="3"></textarea>
-
-                            <div class="@(editableBody?.Length > 500 ? "text-danger" : "")">
-                                Character count: @(editableBody?.Length ?? 0)/500
-                            </div>
-
-                            <button class="btn-success" disabled="@(editableBody!.Length > 500)" @onclick="() => SaveNote(note)">Save</button>
-                            <button class="btn-danger" @onclick="CancelEdit">Cancel</button>
-                        }
-                        else
-                        {
-                            <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
-                            <p class="text-break">@note.Body</p>
-                            <button class="buttonComp" @onclick="() => EnableEdit(note)">Edit Note @note.Id</button>
-                            <button class="btn-danger" @onclick="() => RequestDeleteNote(note.Id)">Delete Note @note.Id</button>
-                        }
+                        <div class="delete-confirmation">
+                            <p>Are you sure you want to delete this note?</p>
+                            <button class="btn btn-danger" @onclick="() => ConfirmDeleteNote(note)">Yes, delete</button>
+                            <button class="btn btn-secondary" @onclick="() => CancelDeleteNote()">No, cancel</button>
+                        </div>
                     }
+
+                    @if (editingNoteId == note.Id)
+                    {
+                        <textarea @bind="editableBody" @bind:event="oninput" class="form-control" rows="3"></textarea>
+
+                        <div class="@(editableBody?.Length > 500 ? "text-danger" : "")">
+                            Character count: @(editableBody?.Length ?? 0)/500
+                        </div>
+
+                        <button class="btn-success" disabled="@(editableBody!.Length > 500)" @onclick="() => SaveNote(note)">Save</button>
+                        <button class="btn-danger" @onclick="CancelEdit">Cancel</button>
+                    }
+                    else
+                    {
+                        <p><strong>Date: </strong>@note.DateSaved.ToString()</p>
+                        <p class="text-break">@note.Body</p>
+                        <button class="buttonComp" @onclick="() => EnableEdit(note)">Edit Note @note.Id</button>
+                        <button class="btn-danger" @onclick="() => RequestDeleteNote(note.Id)">Delete Note @note.Id</button>
+                    }
+                        </div>
                 }
-            </div>
-
-
-        <div class="footer">
-            <strong>Saved on: </strong>@Job?.TimeSaved.ToString() <br />
-            <strong>Job ID: </strong>@Job?.Id <br />
-            <strong>Source: </strong>@FormatUrl(Job!.Url) <br />
+            }
         </div>
 
-        <AddNoteForm SavedJob="Job"/>
+        <AddNoteForm SavedJob="Job" />
+        </div>
+        <div class="footer">
+            <div class="date-saved">
+            <strong>Saved on: </strong>@Job?.TimeSaved.ToString() <br />
+            </div>
+            <div class="job-id">
+            <strong>Job ID: </strong>@Job?.Id <br />
+            </div>
+            <div class="source">
+            <strong>Source: </strong>@FormatUrl(Job!.Url) <br />
+            </div>
+        </div>
+
+        
 
         
 }
