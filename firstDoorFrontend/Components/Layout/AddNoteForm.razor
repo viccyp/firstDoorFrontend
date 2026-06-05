@@ -40,6 +40,9 @@ else if (!postError && isPosted)
     [Parameter]
     public SavedJob? SavedJob { get; set; }
 
+    [Parameter]
+    public EventCallback<JobNote> OnNoteAdded { get; set; }
+
     private JobNote? JobNote;
 
     private bool postError = false;
