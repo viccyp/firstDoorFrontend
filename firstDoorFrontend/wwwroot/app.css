@@ -56,13 +56,20 @@ body {
     gap: 100px;
     margin-top: 40px;
     color: white;
+    background-color: black;
     min-height: 100vh;
 
     .job-status, .job-description, .employer-name, .location {
         padding: 40px;
         border: 2px solid black;
         border-radius: 14px;
-        background-color: #101010
+        background-color: #101010;
+    }
+
+    .job-status {
+        max-height: 200px;
+        min-width: 180px;
+        max-width: 180px;
     }
 
 
@@ -149,6 +156,7 @@ html, body {
 
 
 .notes-section {
+    color: black;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -164,7 +172,7 @@ html, body {
 .note {
     position: relative;
     padding: 10px;
-    border: 2px solid white;
+    border: 2px solid rgb(17, 0, 51);
 }
 
 .title {
