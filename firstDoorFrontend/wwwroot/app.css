@@ -28,6 +28,18 @@
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     background-color: rgb(17, 0, 51);
+
+    .button {
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 1rem;
+    }
+
+        .button:hover {
+            color: aqua;
+            text-shadow: 0 4px 8px rgba(54, 68, 211, 0.4);
+        }
 }
 
 h1, h2, h3 {
@@ -63,7 +75,7 @@ body {
         padding: 40px;
         border: 2px solid black;
         border-radius: 14px;
-        background-color: #101010;
+        background-color: #bdbaff56;
     }
 
     .job-status {
@@ -72,18 +84,12 @@ body {
         max-width: 180px;
     }
 
-
-
-
     .saved-job-manager {
         padding: 10px;
         display: flex;
         flex-direction: row;
         gap: 10px;
     }
-
-
-
 
     .footer {
         align-items: end;
@@ -102,11 +108,9 @@ body {
     font-weight: 600;
     text-decoration: none;
 }
-
     .buttonComp:hover {
         background: #BDBAFF;
     }
-
 
 .buttons {
         display: flex;
@@ -156,7 +160,7 @@ html, body {
 
 
 .notes-section {
-    color: black;
+    color: white;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -165,14 +169,18 @@ html, body {
 
 .notes {
     display: flex;
+    color: black;
+    background-color: white;
     flex-direction: row;
     gap: 8px;
+    border-radius: 14px;
 }
 
 .note {
     position: relative;
-    padding: 10px;
+    padding: 20px 80px 20px 20px;
     border: 2px solid rgb(17, 0, 51);
+    
 }
 
 .title {
