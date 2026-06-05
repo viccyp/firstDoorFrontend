@@ -79,6 +79,11 @@ else if (!postError && isPosted)
                PropertyNameCaseInsensitive = true
             });
 
+            if (JobNote != null)
+            {
+                await OnNoteAdded.InvokeAsync(JobNote);
+            }
+
             request.Body = string.Empty;
         }
         catch (Exception)
