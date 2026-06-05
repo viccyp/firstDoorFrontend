@@ -31,7 +31,7 @@
 {
     <p>Failed to add note. Please try again later</p>
 }
-else if (!postError && isPosted)
+else if (showPostSuccess)
 {
     <DisplayAddedNote Note="JobNote" />
 }
@@ -40,10 +40,14 @@ else if (!postError && isPosted)
     [Parameter]
     public SavedJob? SavedJob { get; set; }
 
+    [Parameter]
+    public EventCallback<JobNote> OnNoteAdded { get; set; }
+
     private JobNote? JobNote;
 
     private bool postError = false;
-    private bool isPosted = false;
+
+    private bool showPostSuccess = false;
 
     private PostNoteRequest request = new();
 
@@ -58,7 +62,6 @@ else if (!postError && isPosted)
     protected async Task HandleSave()
     {
         postError = false;
-        isPosted = false;
 
         try
         {
@@ -67,7 +70,8 @@ else if (!postError && isPosted)
             response.EnsureSuccessStatusCode();
 
             postError = false;
-            isPosted = true;
+
+            showPostSuccess = true;
 
             var content = await response.Content.ReadAsStringAsync();
 
@@ -76,7 +80,17 @@ else if (!postError && isPosted)
                PropertyNameCaseInsensitive = true
             });
 
+            if (JobNote != null)
+            {
+                await OnNoteAdded.InvokeAsync(JobNote);
+            }
+
             request.Body = string.Empty;
+
+            StateHasChanged();
+            await Task.Delay(3000);
+            showPostSuccess = false;
+            StateHasChanged();
         }
         catch (Exception)
         {
