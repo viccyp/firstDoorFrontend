@@ -16,6 +16,24 @@
     font-family: PixelOperator, sans-serif;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    font-family: PixelOperator, sans-serif;
+    color: white;
+    margin-top: 60px;
+    padding: 40px;
+    padding-top: 50px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    background-color: rgb(17, 0, 51);
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
 body {
     font-family: PixelOperator, sans-serif;
 }
@@ -35,13 +53,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 40px;
+    gap: 100px;
+    margin-top: 40px;
     color: white;
     min-height: 100vh;
 
-    .job-header {
-        width: 100px;
+    .job-status, .job-description, .employer-name, .location {
+        padding: 40px;
+        border: 2px solid black;
+        border-radius: 14px;
+        background-color: #101010
     }
+
+
+
+
+    .saved-job-manager {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+
+
 
     .footer {
         align-items: end;
@@ -85,22 +120,7 @@ html, body {
     background-color: black;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    font-family: PixelOperator, sans-serif;
-    color: white;
-    padding: 40px;
-    padding-top: 50px;
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
-    background-color: rgb(17, 0, 51);
-}
 
-    h1,h2,h3 {
-        font-weight: bold;
-    }
 
 .search-bar-container {
     display: flex;
@@ -127,27 +147,6 @@ html, body {
     box-shadow: 0 0px 16px 0 #bdbaff56, 0 0px 8px 0 #bdbaff56;
 }
 
-.job-status {
-
-}
-
-.saved-job-manager {
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-
-    .job-header {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-    }
-}
-
-.job-header {
-    display: flex;
-    flex-direction: row;
-}
 
 .notes-section {
     padding: 10px;
