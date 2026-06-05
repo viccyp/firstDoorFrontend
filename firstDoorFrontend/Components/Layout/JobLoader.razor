@@ -39,7 +39,6 @@ else
 
         try
         {
-            //careerJet call
             using var careerJetRequest = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5095/CareerJet");
             careerJetRequest.Headers.Add("User-Agent", "Mozilla");
 
@@ -48,14 +47,12 @@ else
 
             var careerJetJobs = await careerJetResponse.Content.ReadFromJsonAsync<List<Job>>() ?? new List<Job>();
 
-            //reed call
             using var reedRequest = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5095/Reed?keyword=junior&location=London");
             
             var reedResponse = await Http.SendAsync(reedRequest);
             reedResponse.EnsureSuccessStatusCode();
 
             var reedJobs = await reedResponse.Content.ReadFromJsonAsync<List<Job>>() ?? new List<Job>();
-            Console.WriteLine("About to call Reed");
         
             jobs = careerJetJobs
                 .Concat(reedJobs)
@@ -65,8 +62,6 @@ else
         catch (Exception ex)
         {
             isError = true;
-            //Console.WriteLine($"Error fetching jobs: {ex.Message}");
-            Console.WriteLine(ex);
         }
     }
 }
