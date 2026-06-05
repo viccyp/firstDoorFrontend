@@ -256,4 +256,14 @@
         showNoteDeleteSuccess = false;
         StateHasChanged();
     }
+
+    private void HandleNoteAdded(JobNote newNote)
+    {
+        if (Job != null)
+        {
+            Job.Notes ??= new List<JobNote>();
+            Job.Notes.Add(newNote);
+            StateHasChanged();
+        }
+    }
 }
