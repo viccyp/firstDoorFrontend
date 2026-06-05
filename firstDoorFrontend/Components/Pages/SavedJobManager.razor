@@ -8,8 +8,13 @@
 
 <NavBar />
     <div class="header">
-        <h1>@Job?.Title</h1>
+        
+        <div class="status"
+         style="background-color: @StatusColour;">
         </div>
+    <h1>@Job?.Title</h1>
+    </div>
+
 <div class="page-layout">
     @if (Error != null)
     {
@@ -21,22 +26,27 @@
     <div class="saved-job-manager">
         
             <div class="job-header">
+                <a href="@Job?.Url" target="blank" class="btn btn-primary">Apply on website</a>
+
                     <div class="status">
                         Status: @CurrentStatus
-                    </div><button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
-
+                   
+                    <button class="buttonComp" @onclick="() => HandleStatusChange(Job!)">Toggle</button>
+                </div>
+                </div>
+                </div>
+                
                 <div class="employer-name">
                     @Job?.EmployerName
                 </div>
-                <a href="@Job?.Url" target="blank" class="btn btn-primary">Quick apply</a>
-            </div>
-
+                <div>
             <div class="job-description">
                 @((MarkupString)Job!.Description)
             </div>
 
-            <div class="location"></div>
+            <div class="location">
                 <strong>Location: </strong>@Job?.Location
+            </div>
             </div>
 
             <div class="notes">
@@ -106,6 +116,14 @@
     public string CurrentStatus => Job?.Status.ToString().Replace("_", " ") ?? "Unknown";
     private int? editingNoteId;
     private string editableBody = "";
+    private string StatusColour => Job?.Status switch
+    {
+        Status.To_Apply => "#87CEFA",      // light blue
+        Status.Applied => "#90EE90",       // light green
+        Status.Interviewing => "#006400",  // dark green
+        Status.Rejected => "#DC143C",      // red
+        _ => "#808080"                     // grey fallback - should add accepted status? or is that ridiculous?
+    };
 
     private int? deletingNoteId;
     private bool showNoteDeleteSuccess = false;

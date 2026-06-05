@@ -58,10 +58,7 @@
     flex-shrink: 0;
 }
 
-.status {
-    font-size: 0.9rem;
-    color: #666;
-}
+
 
 .quick-apply-button {
     width: fit-content;
