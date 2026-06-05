@@ -162,3 +162,15 @@ html, body {
     padding: 10px;
     border: 2px solid white;
 }
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    .status {
+        width: 10px;
+        height: 10px;
+    }
+}
